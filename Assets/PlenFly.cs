@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlenFly : MonoBehaviour
 {
-    //Kaamera positioon
-    public Transform mainCameraPosition;
+    //Kaamera "giidi" positioon
+    public Transform mainCameraGuidePosition;
 
     //Lennuki positioon
     public Transform playerPosition;
@@ -41,10 +41,10 @@ public class PlenFly : MonoBehaviour
         transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll);
 
         //Siin me toome kaamera mängija järel
-        mainCameraPosition.position = playerPosition.position + new Vector3(0, 5f, -10f);
+        mainCameraGuidePosition.position = playerPosition.position;
 
         //Siin me pöörame oma kaamerat mängija järel
-        mainCameraPosition.rotation = playerPosition.rotation;
+        mainCameraGuidePosition.Rotate(0, horizontalInput * Time.deltaTime * 25, 0);
     }
     
 }
