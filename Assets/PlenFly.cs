@@ -31,7 +31,7 @@ public class PlenFly : MonoBehaviour
 
         //Me siin registreerime, mida mängija tahab teha
         horizontalInput = Input.GetAxis("Horizontal") * 3;
-        verticalInput = -(Input.GetAxis("Vertical") * 2);
+        verticalInput = -(Input.GetAxis("Vertical") * 5);
 
         //Siin paneme info oma muutujasse
         yaw += horizontalInput * Time.deltaTime * 25;
@@ -39,7 +39,7 @@ public class PlenFly : MonoBehaviour
         roll = Mathf.Lerp(0, 20, Mathf.Abs(horizontalInput)) * -MathF.Sign(horizontalInput * Time.deltaTime);
 
         //Siin me pöörame oma mängijat
-        transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll);
+        transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll * 3);
 
         //Siin me toome kaamera mängija järel
         mainCameraGuidePosition.position = playerPosition.position;
