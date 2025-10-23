@@ -51,10 +51,11 @@ public class PlaneControls : MonoBehaviour
             roll = Mathf.Abs(horizontalInput) *-MathF.Sign(horizontalInput * Time.deltaTime) * 7.5f;
 
             //Pöörame lennuki osad, et see näeb realistilisem välja
-            rightElevon.localRotation = Quaternion.Euler(new Vector3(-45 * MathF.Abs(roll / 90), 0, 0));
-            leftElevon.localRotation = Quaternion.Euler(new Vector3(-45 * MathF.Abs(roll / 90), 0, 0));
-            rightCanard.localRotation = Quaternion.Euler(new Vector3(-45 * MathF.Abs(roll / 90), 0, 0));
-            leftCanard.localRotation = Quaternion.Euler(new Vector3(-45 * MathF.Abs(roll / 90), 0, 0));
+            rightElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
+            leftElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
+            rightElevon.position += new Vector3(0, 5, 0);
+            rightCanard.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
+            leftCanard.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
 
             //Siin me pöörame oma mängijat
             transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll * 3);
