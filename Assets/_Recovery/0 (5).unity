@@ -2112,8 +2112,8 @@ MonoBehaviour:
   mainCameraGuidePosition: {fileID: 1410318616}
   leftCanard: {fileID: 1271256913}
   rightCanard: {fileID: 1577456501}
-  rightElevon: {fileID: 2026822989}
-  leftElevon: {fileID: 1867624192}
+  rightElevon: {fileID: 0}
+  leftElevon: {fileID: 722147911}
   playerPosition: {fileID: 752494109}
   planeSpeed: 20
   pause: 0

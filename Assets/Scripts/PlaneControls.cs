@@ -53,7 +53,6 @@ public class PlaneControls : MonoBehaviour
             //Pöörame lennuki osad, et see näeb realistilisem välja
             rightElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
             leftElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
-            rightElevon.position += new Vector3(0, 5, 0);
             rightCanard.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
             leftCanard.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
 
