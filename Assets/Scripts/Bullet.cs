@@ -1,20 +1,18 @@
 using UnityEngine;
+
 public class Bullet : MonoBehaviour
 {
     //Siin me teeme oma muutujad
-    public Transform bulletSpawn;
     public float bulletSpeed;
+    public Rigidbody rigidbodyBullet;
 
     //Siin me teeme kuuli sündmusteks valmis
-    void Awake()
+    void Start()
     {
-        transform.rotation = bulletSpawn.localRotation;
-        transform.position = bulletSpawn.localPosition;
-    }
+        //Paneme kuulile kiiruse
+        rigidbodyBullet.linearVelocity += transform.forward * bulletSpeed;
 
-    //Siin toimuvad sündmused
-    void Update()
-    {
-        transform.position = transform.forward * bulletSpeed * Time.deltaTime;
+        //Kustutame kuuli pärast 3 sekundit
+        Destroy(gameObject, 3);
     }
 }

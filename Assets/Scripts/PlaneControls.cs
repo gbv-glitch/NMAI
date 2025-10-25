@@ -35,8 +35,14 @@ public class PlaneControls : MonoBehaviour
     //Püssikuul
     public GameObject bulletPrefab;
 
+    //Kuuli tekkimispositioon
+    public Transform bulletSpawn;
+
     //Pausile panemise võimalus
     public bool pause = false;
+
+    //Kahuri laskmiskiiruse vähendamine
+    public bool readyToShoot = true;
 
     //Mängu sündmused toimuvad siin
     private void Update()
@@ -53,7 +59,7 @@ public class PlaneControls : MonoBehaviour
             //Siin paneme info oma muutujasse
             yaw += horizontalInput * Time.deltaTime * 25;
             pitch = Mathf.Abs(verticalInput) * MathF.Sign(verticalInput * Time.deltaTime) * 4;
-            roll = Mathf.Abs(horizontalInput) *-MathF.Sign(horizontalInput * Time.deltaTime) * 7.5f;
+            roll = Mathf.Abs(horizontalInput) * -MathF.Sign(horizontalInput * Time.deltaTime) * 7.5f;
 
             //Pöörame lennuki osad, et see näeb realistilisem välja
             rightElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
@@ -83,7 +89,18 @@ public class PlaneControls : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                print("pewpew");
+                //Kontrollime, kas me oleme tulistamiseks valmis
+                if (readyToShoot)
+                {
+                    //Tekitame uue kuuli
+                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+
+                    //Selleks, et me ei saaks tulistada kohe pärast tulistamist
+                    readyToShoot = false;
+
+                    //Paneme ennast valmis tulistama peale 0,1 sekundi
+                    Invoke("ReadyToShoot", 0.1f);
+                }
             }
         }
 
@@ -99,6 +116,11 @@ public class PlaneControls : MonoBehaviour
                 pause = true;
             }
         }
+    }
+    
+    public void ReadyToShoot()
+    {
+        readyToShoot = true;
     }
     
 }

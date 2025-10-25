@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 16429924}
   - component: {fileID: 16429923}
   - component: {fileID: 16429922}
+  - component: {fileID: 16429921}
   m_Layer: 0
   m_Name: Cloud (4)
   m_TagString: Untagged
@@ -168,6 +169,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &16429921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16429920}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &16429922
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -561,6 +583,7 @@ GameObject:
   - component: {fileID: 187941927}
   - component: {fileID: 187941926}
   - component: {fileID: 187941925}
+  - component: {fileID: 187941924}
   m_Layer: 0
   m_Name: Cloud (2)
   m_TagString: Untagged
@@ -568,6 +591,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &187941924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187941923}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &187941925
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1099,6 +1143,7 @@ GameObject:
   - component: {fileID: 395738941}
   - component: {fileID: 395738940}
   - component: {fileID: 395738939}
+  - component: {fileID: 395738938}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -1106,6 +1151,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &395738938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395738937}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &395738939
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1426,6 +1492,7 @@ GameObject:
   - component: {fileID: 544244842}
   - component: {fileID: 544244841}
   - component: {fileID: 544244840}
+  - component: {fileID: 544244839}
   m_Layer: 0
   m_Name: Cloud (1)
   m_TagString: Untagged
@@ -1433,6 +1500,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &544244839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544244838}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &544244840
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1990,7 +2078,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletSpawn: {fileID: 0}
   pause: 0
-  readyToShoot: 1
 --- !u!1 &722147910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,7 +2339,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1945408128560347204, guid: 49ac88136aaf1113b89d976ffe4c662a, type: 3}
   bulletSpawn: {fileID: 11140141}
   pause: 0
-  readyToShoot: 1
 --- !u!4 &752494109
 Transform:
   m_ObjectHideFlags: 0
@@ -2792,7 +2878,7 @@ GameObject:
   - component: {fileID: 1256530767}
   - component: {fileID: 1256530766}
   m_Layer: 0
-  m_Name: Horizontal Stabilizer
+  m_Name: Horizontal Stabilizer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3267,6 +3353,7 @@ GameObject:
   - component: {fileID: 1410769815}
   - component: {fileID: 1410769814}
   - component: {fileID: 1410769813}
+  - component: {fileID: 1410769812}
   m_Layer: 0
   m_Name: Cloud (3)
   m_TagString: Untagged
@@ -3274,6 +3361,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1410769812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410769811}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1410769813
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4468,6 +4576,7 @@ GameObject:
   - component: {fileID: 2067040837}
   - component: {fileID: 2067040836}
   - component: {fileID: 2067040835}
+  - component: {fileID: 2067040834}
   m_Layer: 0
   m_Name: Cloud (5)
   m_TagString: Untagged
@@ -4475,6 +4584,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &2067040834
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067040833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2067040835
 MeshRenderer:
   m_ObjectHideFlags: 0
