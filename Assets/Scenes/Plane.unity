@@ -675,7 +675,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3864786809a24c4d8ab4b65996691096, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1796,6 +1796,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1945408128560347204, guid: 49ac88136aaf1113b89d976ffe4c662a, type: 3}
   bulletSpawn: {fileID: 11140141}
   bulletSound: {fileID: 207265079}
+  engineSound: {fileID: 2087424952}
   pause: 0
   readyToShoot: 1
 --- !u!4 &752494109
@@ -2780,6 +2781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321984980}
   - component: {fileID: 1321984981}
+  - component: {fileID: 1321984982}
   m_Layer: 0
   m_Name: Reticle
   m_TagString: Untagged
@@ -2860,6 +2862,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1321984982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321984979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa48800b6adbd063a6910dbd3ee3783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reticle
 --- !u!1 &1353303840
 GameObject:
   m_ObjectHideFlags: 0
@@ -4226,7 +4240,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: fee9d52ede76a3ff3af429acafd67bed, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -41,11 +41,24 @@ public class PlaneControls : MonoBehaviour
     //Kuuli heli
     public AudioSource bulletSound;
 
+    //Mootori hääl
+    public AudioSource engineSound;
+
     //Pausile panemise võimalus
     public bool pause = false;
 
     //Kahuri laskmiskiiruse vähendamine
     public bool readyToShoot = true;
+
+    //Selle koodi me jookseme ühe korra mängu alguses
+    void Start()
+    {
+        //Paneme heli staatuse selliseks, et see mängiks iga kord kui see ära lõppeb
+        engineSound.loop = true;
+
+        //Paneme hääle mängima
+        engineSound.Play();
+    }
 
     //Mängu sündmused toimuvad siin
     private void Update()
@@ -88,33 +101,22 @@ public class PlaneControls : MonoBehaviour
                 planeSpeed = 15;
             }
 
-            //Siin me tulistame, kui mängija vajutab hiirele
+            //Siin me tulistame, kui mängija vajutab hiirele ja kontrollime, kas me oleme tulistamiseks valmis
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) & readyToShoot)
             {
-                //Kontrollime, kas me oleme tulistamiseks valmis
-                if (readyToShoot)
-                {
-                    //Check if bulletSpawn is not null
-                    if (bulletSpawn != null)
-                    {
-                        //Tekitame uue kuuli
-                        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-                    }
-                    else
-                    {
-                        Debug.LogError("bulletSpawn is null!");
-                    }
+                //Tekitame uue kuuli
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
 
-                    //Mängime laskmisheli
-                    bulletSound.PlayOneShot(bulletSound.clip);
+                //Mängime laskmisheli
+                bulletSound.PlayOneShot(bulletSound.clip);
 
-                    //Selleks, et me ei saaks tulistada kohe pärast tulistamist
-                    readyToShoot = false;
+                //Selleks, et me ei saaks tulistada kohe pärast tulistamist
+                readyToShoot = false;
 
-                    //Paneme ennast valmis tulistama peale 0,1 sekundi
-                    Invoke("ReadyToShoot", 0.1f);
-                }
+                //Paneme ennast valmis tulistama peale 0,1 sekundi
+                Invoke("ReadyToShoot", 0.1f);
+
             }
         }
 
