@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -6,7 +7,9 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public Rigidbody rigidbodyBullet;
 
-    //Siin me teeme kuuli sündmusteks valmis
+    public GameObject gun;
+
+    //Selle koodi me jookseme ühe korra siis, kui objekt tehakse
     void Start()
     {
         //Paneme kuulile kiiruse
@@ -15,4 +18,12 @@ public class Bullet : MonoBehaviour
         //Kustutame kuuli pärast 3 sekundit
         Destroy(gameObject, 3);
     }
+
+    //See kood jookseb siis, kui me millegagi kokku põrkame
+    void OnCollisionEnter(Collision collision)
+    {
+        //Kustutame objekti millega kokku põrkasime
+        Destroy(collision.gameObject);
+    }
+
 }

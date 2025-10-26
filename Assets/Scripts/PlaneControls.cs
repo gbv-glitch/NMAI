@@ -38,6 +38,9 @@ public class PlaneControls : MonoBehaviour
     //Kuuli tekkimispositioon
     public Transform bulletSpawn;
 
+    //Kuuli heli
+    public AudioSource bulletSound;
+
     //Pausile panemise võimalus
     public bool pause = false;
 
@@ -94,6 +97,9 @@ public class PlaneControls : MonoBehaviour
                 {
                     //Tekitame uue kuuli
                     GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+
+                    //Mängime laskmisheli
+                    bulletSound.PlayOneShot(bulletSound.clip);
 
                     //Selleks, et me ei saaks tulistada kohe pärast tulistamist
                     readyToShoot = false;
