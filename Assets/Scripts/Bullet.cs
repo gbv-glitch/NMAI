@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public Rigidbody rigidbodyBullet;
 
-    public GameObject gun;
-
     //Selle koodi me jookseme ühe korra siis, kui objekt tehakse
     void Start()
     {
@@ -22,8 +20,16 @@ public class Bullet : MonoBehaviour
     //See kood jookseb siis, kui me millegagi kokku põrkame
     void OnCollisionEnter(Collision collision)
     {
-        //Kustutame objekti millega kokku põrkasime
-        Destroy(collision.gameObject);
+        //Vaatame, kas objekt on objekt, mida saab ära purustada
+        if (collision.gameObject.tag == "Target")
+        {
+            //Kustutame objekti millega kokku põrkasime
+            Destroy(collision.gameObject);
+
+            //Kustutame kuuli ära
+            Destroy(gameObject);
+        }
+        
     }
 
 }

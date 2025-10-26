@@ -95,8 +95,16 @@ public class PlaneControls : MonoBehaviour
                 //Kontrollime, kas me oleme tulistamiseks valmis
                 if (readyToShoot)
                 {
-                    //Tekitame uue kuuli
-                    GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+                    //Check if bulletSpawn is not null
+                    if (bulletSpawn != null)
+                    {
+                        //Tekitame uue kuuli
+                        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+                    }
+                    else
+                    {
+                        Debug.LogError("bulletSpawn is null!");
+                    }
 
                     //Mängime laskmisheli
                     bulletSound.PlayOneShot(bulletSound.clip);
