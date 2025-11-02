@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 207265079}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 407335906}
   m_Layer: 0
   m_Name: Wings center
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,11 +1125,11 @@ Transform:
   m_GameObject: {fileID: 407335904}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1631, z: 0.17939377}
-  m_LocalScale: {x: 3.2124374, y: 0.20000003, z: -0.77483773}
+  m_LocalPosition: {x: 0, y: 0, z: -4.191304}
+  m_LocalScale: {x: 2.2462068, y: 1, z: -2.4202535}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 752494109}
+  m_Father: {fileID: 814795837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &407335906
 BoxCollider:
@@ -1549,7 +1549,7 @@ GameObject:
   - component: {fileID: 663750614}
   m_Layer: 0
   m_Name: Wings back center
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1563,11 +1563,11 @@ Transform:
   m_GameObject: {fileID: 663750612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1631, z: -0.65288544}
-  m_LocalScale: {x: 4.500113, y: 0.20000003, z: 0.8896609}
+  m_LocalPosition: {x: 0, y: 0, z: -6.79098}
+  m_LocalScale: {x: 3.1465778, y: 1, z: 2.7789106}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 752494109}
+  m_Father: {fileID: 814795837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &663750614
 BoxCollider:
@@ -1824,13 +1824,9 @@ Transform:
   - {fileID: 1271256913}
   - {fileID: 1508231096}
   - {fileID: 814795837}
-  - {fileID: 407335905}
-  - {fileID: 663750613}
-  - {fileID: 1268007193}
   - {fileID: 1577456501}
   - {fileID: 1867624192}
   - {fileID: 2026822989}
-  - {fileID: 1321984980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &814795836
@@ -1847,7 +1843,7 @@ GameObject:
   - component: {fileID: 814795838}
   m_Layer: 0
   m_Name: Wings front
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1864,7 +1860,10 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.1631, z: 1.5212288}
   m_LocalScale: {x: 1.4301609, y: 0.20000003, z: 0.32014737}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 407335905}
+  - {fileID: 663750613}
+  - {fileID: 1268007193}
   m_Father: {fileID: 752494109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &814795838
@@ -2116,7 +2115,7 @@ GameObject:
   - component: {fileID: 1113003447}
   - component: {fileID: 1113003446}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2193,7 +2192,7 @@ GameObject:
   - component: {fileID: 1236525663}
   m_Layer: 0
   m_Name: Tip back
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2304,7 +2303,7 @@ GameObject:
   - component: {fileID: 1246516555}
   m_Layer: 0
   m_Name: Intake
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2415,7 +2414,7 @@ GameObject:
   - component: {fileID: 1256530766}
   m_Layer: 0
   m_Name: Horizontal Stabilizer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2637,7 +2636,7 @@ GameObject:
   - component: {fileID: 1268007194}
   m_Layer: 0
   m_Name: Wings back
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2651,11 +2650,11 @@ Transform:
   m_GameObject: {fileID: 1268007192}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1631, z: -1.5663109}
-  m_LocalScale: {x: 5.4374847, y: 0.20000003, z: -0.93708503}
+  m_LocalPosition: {x: 0, y: 0, z: -9.64412}
+  m_LocalScale: {x: 3.8020089, y: 1, z: -2.927043}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 752494109}
+  m_Father: {fileID: 814795837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1268007194
 BoxCollider:
@@ -2748,7 +2747,7 @@ GameObject:
   - component: {fileID: 1271256914}
   m_Layer: 0
   m_Name: Left canard
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2846,109 +2845,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271256912}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1321984979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1321984980}
-  - component: {fileID: 1321984981}
-  - component: {fileID: 1321984982}
-  m_Layer: 0
-  m_Name: Reticle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1321984980
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321984979}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.31, z: 155.9}
-  m_LocalScale: {x: 50, y: 50, z: 111}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 752494109}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1321984981
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321984979}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a6c31be18dbb85eb2a83a70e279428fd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &1321984982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321984979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aa48800b6adbd063a6910dbd3ee3783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Reticle
 --- !u!1 &1353303840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,7 +2859,7 @@ GameObject:
   - component: {fileID: 1353303842}
   m_Layer: 0
   m_Name: Rudder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3305,7 +3201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b2690f748dabc9eb8c3d7dc2271a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  target: {fileID: 752494109}
+  target: {fileID: 752494107}
+  bulletPrefab: {fileID: 1945408128560347204, guid: 49ac88136aaf1113b89d976ffe4c662a, type: 3}
+  readyToShoot: 1
+  targetLastFramePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1486644533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,7 +3321,7 @@ GameObject:
   - component: {fileID: 1508231097}
   m_Layer: 0
   m_Name: Wings
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3612,7 +3511,7 @@ GameObject:
   - component: {fileID: 1577456502}
   m_Layer: 0
   m_Name: Right canard
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3835,7 +3734,7 @@ GameObject:
   - component: {fileID: 1857130613}
   m_Layer: 0
   m_Name: Cockpit bottom
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3943,7 +3842,7 @@ GameObject:
   - component: {fileID: 1867624192}
   m_Layer: 0
   m_Name: Left Elevon Guide
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3978,7 +3877,7 @@ GameObject:
   - component: {fileID: 1923551300}
   m_Layer: 0
   m_Name: Glass
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4089,7 +3988,7 @@ GameObject:
   - component: {fileID: 1927861687}
   m_Layer: 0
   m_Name: Tip tip
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4197,7 +4096,7 @@ GameObject:
   - component: {fileID: 2026822989}
   m_Layer: 0
   m_Name: Right Elevon Guide
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4322,7 +4221,7 @@ GameObject:
   - component: {fileID: 2087424952}
   m_Layer: 0
   m_Name: Fuselage
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

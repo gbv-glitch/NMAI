@@ -107,6 +107,7 @@ public class PlaneControls : MonoBehaviour
             {
                 //Tekitame uue kuuli
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+                bullet.GetComponent<Bullet>().hostTag = "Player";
 
                 //Mängime laskmisheli
                 bulletSound.PlayOneShot(bulletSound.clip);
