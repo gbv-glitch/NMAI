@@ -22,8 +22,11 @@ public class PlaneControls : MonoBehaviour
     //Lennuki positioon
     public Transform playerPosition;
 
-    //Lennuki kiirus
-    public float planeSpeed = 20;
+    //Lennuki kiirus protsentides
+    public float planeSpeedPercent = 20;
+
+    //Lennuki maksimum kiirus
+    public float planeMaxSpeed = 150;
 
     //Lennuki pööramine
     private float yaw;
@@ -66,7 +69,7 @@ public class PlaneControls : MonoBehaviour
         //Siin me vaatame, kas mäng on pausile pandud
         if (pause == false)
         {    //Liigutame  lennuki edasi
-            transform.position += transform.forward * planeSpeed * Time.deltaTime;//Viimane on seal, et kõigil oleks ükskõik mis arvutil sama kiirus
+            transform.position += transform.forward * (planeMaxSpeed * planeSpeedPercent / 100) * Time.deltaTime;//Viimane on seal, et kõigil oleks ükskõik mis arvutil sama kiirus
 
             //Me siin registreerime, mida mängija tahab teha
             horizontalInput = Input.GetAxis("Horizontal") * 4;
@@ -93,12 +96,19 @@ public class PlaneControls : MonoBehaviour
             mainCameraGuidePosition.Rotate(0, horizontalInput * Time.deltaTime * 25, 0);
 
             //Siin me muudame mängija kiirust
-            planeSpeed += Input.mouseScrollDelta.y;
+            planeSpeedPercent += Input.mouseScrollDelta.y * 10;
 
-            //Selleks et mängija ei saaks kohal seista, kontrollime, kas lennukiirus on väiksem kui 15. Kui on, siis me paneme selle 15ks.
-            if (planeSpeed <= 15)
+            //Selleks et mängija ei saaks kohal seista, kontrollime, kas lennukiiruse protsent on väiksem kui kümme. Kui on, siis me paneme selle kümneks.
+            if (planeSpeedPercent <= 10)
             {
-                planeSpeed = 15;
+                planeSpeedPercent = 10;
+            }
+
+
+            //Selleks et mängija ei saaks liiga kiiresti lennata, kontrollime, kas lennukiiruse protsent on üle saja. Kui on, siis me paneme selle sajaks.
+            if (planeSpeedPercent >= 100)
+            {
+                planeSpeedPercent = 100;
             }
 
             //Siin me tulistame, kui mängija vajutab hiirele ja kontrollime, kas me oleme tulistamiseks valmis
