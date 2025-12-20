@@ -1,7 +1,15 @@
 using System;
+using JetBrains.Annotations;
+using TMPro;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using UnityEngine.UnityConsent;
 
 class StartButton : MonoBehaviour
 {
@@ -21,6 +29,6 @@ class StartButton : MonoBehaviour
         Debug.Log("Start Game");
 
         //Vahetame stseeni
-        SceneManager.LoadScene("Plane");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Plane");
     }
 }
