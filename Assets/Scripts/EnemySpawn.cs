@@ -45,9 +45,8 @@ public class EnemySpawn : MonoBehaviour
             rotationOfEnemy = UnityEngine.Quaternion.LookRotation(player.transform.position - spawnPoint);
 
             //Siin meie vastane ilmub
-            Instantiate(enemyPrefab, spawnPoint, rotationOfEnemy);
-
-            Debug.Log(i);
+            Instantiate(enemyPrefab, spawnPoint, rotationOfEnemy).tag = "Enemy" + i;
+            Debug.Log("Tag is called " + "Enemy" + i);
         }
     }
 }

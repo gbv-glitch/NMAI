@@ -180,20 +180,6 @@ public class PlaneControls : MonoBehaviour
 
             //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks
             gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
-            
-            //Siin me muudame teksti värvi, vastavalt sellele, kui lähedal me oleme ülekuumenemisele
-            //Kontrollime, kas me peame muutma värvi kollaseks
-            if (bulletsInOneBurst >= 15)
-            {
-                //Siin me muudame värvi
-                gunOverheatCounter.color = new UnityEngine.Color(255, 255, 0);
-            }
-            //Kontrollime, kas me peame värvi oranžiks
-            if (bulletsInOneBurst >= 30)
-            {
-                //Muudame värvi
-                gunOverheatCounter.color = new UnityEngine.Color(255, 127.5f, 0);
-            }
         }
 
         //Siin me saame panna mängu pausile või selle jälle käima panna

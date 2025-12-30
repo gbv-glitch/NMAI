@@ -1,3 +1,4 @@
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -31,13 +32,14 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {        
         //Vaatame, kas objekt on objekt, mida saab ära purustada
-        if (collision.gameObject.tag == "Target" || collision.gameObject.tag == "Player")
-        {            
-            if (collision.gameObject.tag == "Target" & collision.gameObject.tag != hostTag)
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Enviroment")
+        {
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag(collision.gameObject.tag).Count(); i++)
             {
                 //Kustutame objekti millega kokku põrkasime
-                Destroy(collision.gameObject);
+                Destroy(GameObject.FindGameObjectsWithTag(collision.gameObject.tag)[i]);
             }
+            
 
             if (collision.gameObject.tag != hostTag)
             {
