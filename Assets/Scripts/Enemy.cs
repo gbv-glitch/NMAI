@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     // Seda koodi me jookseme alati
     void Update()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         //Leiame kui kiiresti mängija liigub
         Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
 
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position);
 
         //Siin me pöörame vastast
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 60 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
 
         if (readyToShoot)
         {

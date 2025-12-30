@@ -26,9 +26,7 @@ class StartButton : MonoBehaviour
     // See funktsioon muudab stseeni
     private void StartGame()
     {
-        Debug.Log("Start Game");
-
         //Vahetame stseeni
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Plane");
+        SceneManager.LoadScene("Plane");
     }
 }
