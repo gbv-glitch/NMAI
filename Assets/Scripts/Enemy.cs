@@ -15,38 +15,43 @@ public class Enemy : MonoBehaviour
     // Seda koodi me jookseme alati
     void Update()
     {
+        //Paneme oma mängija vastase vastaseks
         target = GameObject.FindGameObjectWithTag("Player");
-        //Leiame kui kiiresti mängija liigub
-        Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
 
-        //Leiame aja, mis on meie kuulil vaja, et mängijale pihta saada
-        float timeToHit = Vector3.Distance(transform.position, targetLastFramePosition) / 300f;
-
-        //Leiame, kus mängija on timeToHit skundi pärast
-        Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
-
-        // Liigutame vastase edasi
-        transform.position += transform.forward * Time.deltaTime * 15;
-
-        //Siin me arvutame, kuhu me peame pöörama
-        Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position);
-
-        //Siin me pöörame vastast
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
-
-        if (readyToShoot)
+        //Kontrollime, kas mäng on pausile pandud
+        if (target.GetComponent<PlaneControls>().pause != true)
         {
-            GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            //Leiame kui kiiresti mängija liigub
+            Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
 
-            enemyBullet.GetComponent<Bullet>().hostTag = "Target";
+            //Leiame aja, mis on meie kuulil vaja, et mängijale pihta saada
+            float timeToHit = Vector3.Distance(transform.position, targetLastFramePosition) / 300f;
 
-            readyToShoot = false;
+            //Leiame, kus mängija on timeToHit skundi pärast
+            Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
 
-            Invoke("ReadyToShoot", 1f);
-        }
+            // Liigutame vastase edasi
+            transform.position += transform.forward * Time.deltaTime * 15;
 
-        //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
-        targetLastFramePosition = target.transform.position;
+            //Siin me arvutame, kuhu me peame pöörama
+            Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position);
+
+            //Siin me pöörame vastast
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
+
+            if (readyToShoot)
+            {
+                GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+
+                enemyBullet.GetComponent<Bullet>().hostTag = "Target";
+
+                readyToShoot = false;
+
+                Invoke("ReadyToShoot", 1f);
+            }
+
+            //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
+            targetLastFramePosition = target.transform.position;}
     }
 
     void ReadyToShoot()
