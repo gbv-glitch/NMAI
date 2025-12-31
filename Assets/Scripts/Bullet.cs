@@ -39,16 +39,13 @@ public class Bullet : MonoBehaviour
         {
             for (int i = 0; i < GameObject.FindGameObjectsWithTag(collision.gameObject.tag).Count(); i++)
             {
-                //Kustutame objekti millega kokku põrkasime
+                //Kustutame objekti mis valitud on
                 Destroy(GameObject.FindGameObjectsWithTag(collision.gameObject.tag)[i]);
             }
-            
 
-            if (collision.gameObject.tag != hostTag)
-            {
-                //Kustutame kuuli ära
-                Destroy(gameObject);
-            }
+
+            //Ütleme mängijale, et vastaseid on üks vähem
+            player.GetComponent<PlaneControls>().enemiesLeft -= 1;
         }
 
         //Siin me kontrollime kas kuul on vastase oma ja kas see on mängijale pihta saanud

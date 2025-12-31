@@ -16,7 +16,7 @@ class StartButton : MonoBehaviour
     //See on meie nupp, mida me vajutame, et alustada mängu
     public UnityEngine.UI.Button startButton;
 
-    // See kood ühe korra
+    // See kood jookseb ühe korra
     void Start()
     {
         //Teeme nii, et hiirekursor on nähtav ja kasutav

@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class SpeedIndication : MonoBehaviour
 {
-    //See on meie mängija
     public GameObject Player;
 
     //Pildid, mis näitavad, kui kiiresti me sõidame

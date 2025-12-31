@@ -13,6 +13,12 @@ using UnityEngine.UnityConsent;
 
 public class PlaneControls : MonoBehaviour
 {
+    //See on tekst, mis näitab mitu vastast on alles
+    public TextMeshProUGUI enemyCounter;
+
+    //Mitu vastast on alles
+    public float enemiesLeft;
+
     //Kuulide arv
     public float bullets = 600;
 
@@ -220,11 +226,26 @@ public class PlaneControls : MonoBehaviour
             }
         }
 
-        //Kontrollime, kas mängija on surnud
-        if (hp == 0)
+        // Kontrollime, kas mängija on surnud
+        if (hp <= 0)
         {
             SceneManager.LoadScene("Death screen");
         }
+
+        // Kontrollime kas mängija on võitnud (kõik vastased tapnud)
+        if (enemiesLeft <= 0)
+        {
+            SceneManager.LoadScene("Victory screen");
+        }
+
+        // Veendume, et enemiesLeft ei läheks kunagi alla nulli
+        if (enemiesLeft < 0)
+        {
+            enemiesLeft = 0;
+        }
+
+        //Muudame oma teksti, et näidata mitu vastast on alles
+        enemyCounter.text = "Enemies left: " + enemiesLeft;
     }
 
     //Tulistamiseks valmis panemine
