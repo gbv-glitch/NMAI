@@ -9,6 +9,9 @@ public class Bullet : MonoBehaviour
     public Rigidbody rigidbodyBullet;
     public string hostTag;
 
+    //See on meie mängija
+    public GameObject player;
+
     //Selle koodi me jookseme ühe korra siis, kui objekt tehakse
     void Start()
     {
@@ -46,12 +49,14 @@ public class Bullet : MonoBehaviour
                 //Kustutame kuuli ära
                 Destroy(gameObject);
             }
+        }
 
-            if (collision.gameObject.tag == "Player" & hostTag != "Player")
-            {
-                print("You got a hole in your left wing!");
-            }
-        }        
+        //Siin me kontrollime kas kuul on vastase oma ja kas see on mängijale pihta saanud
+        if (collision.gameObject.tag == "Player" && hostTag != "Player")
+        {
+            //Võtame mängijalt elu ära
+            player.GetComponent<PlaneControls>().hp -= 1f;
+        }    
     }
 
 }

@@ -31,7 +31,7 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         //Siin me valime, mitu vastast peab ilmuma
-        enemiesLeftToSpawn = UnityEngine.Random.Range(1, 10);
+        enemiesLeftToSpawn = UnityEngine.Random.Range(1f, 10f);
 
         Debug.Log(enemiesLeftToSpawn);
         //Siin me kontrollime, kas rohkem vastaseid peab ilmuma

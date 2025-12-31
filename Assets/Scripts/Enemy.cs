@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
                 transform.position += transform.forward * Time.deltaTime * 15;
 
                 //Siin me arvutame, kuhu me peame pöörama
-                Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-30f, 30f), UnityEngine.Random.Range(-30f, 30f), UnityEngine.Random.Range(-30f, 30f)));
+                Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f)));
 
                 //Siin me pöörame vastast
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
@@ -57,8 +57,9 @@ public class Enemy : MonoBehaviour
                     //Kuul ilmub
                     GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
-                    //Me anname kuulile info, et see vastast ei kustutaks
+                    //Me anname kuulile info, mida sellel on vaja
                     enemyBullet.GetComponent<Bullet>().hostTag = gameObject.tag;
+                    enemyBullet.GetComponent<Bullet>().player = target;
 
                     //Vastane saab alles tulistada 1 sekund hiljem
                     readyToShoot = false;

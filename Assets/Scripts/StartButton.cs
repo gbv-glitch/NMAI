@@ -19,6 +19,9 @@ class StartButton : MonoBehaviour
     // See kood jookseb iga kaader
     void Start()
     {
+        //Teeme nii, et hiirekursor on nähtav ja kasutav
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
         //Kui nuppu vajutatakse, siis kutsume StartGame funktsiooni
         startButton.onClick.AddListener(StartGame);
     }

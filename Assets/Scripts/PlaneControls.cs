@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.UnityConsent;
@@ -26,6 +27,9 @@ public class PlaneControls : MonoBehaviour
 
     //Me vaatame, mitu kuuli on mängija korraga tulistanud
     public float bulletsInOneBurst = 0;
+
+    //See on mitu nn elupunkti mängijal veel on
+    public float hp = 10;
 
     //Lennuki osade positioon
     public Transform leftCanard;
@@ -145,9 +149,10 @@ public class PlaneControls : MonoBehaviour
 
             if (Input.GetMouseButton(0) && readyToShoot && bullets > 0)
             {
-                //Tekitame uue kuuli
+                //Tekitame uue kuuli ja anname sellele vajaliku info
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
                 bullet.GetComponent<Bullet>().hostTag = "Player";
+                bullet.GetComponent<Bullet>().player = gameObject;
 
                 //Võtame kuulide arvust ühe ära
                 bullets -= 1f;
@@ -220,6 +225,13 @@ public class PlaneControls : MonoBehaviour
                 pause = true;
             }
         }
+
+        //Kontrollime, kas mängija on surnud
+        if (hp == 0)
+        {
+            SceneManager.LoadScene("Starting menu");
+        }
+        print("Hp level: " + hp);
     }
 
     //Tulistamiseks valmis panemine
