@@ -180,6 +180,9 @@ public class PlaneControls : MonoBehaviour
                 
                 //Paneme ennast valmis tulistama peale 10 sekundi
                 Invoke("ReadyToShoot", 10f);
+
+                //Näitame, et me ei saa veel tulistada
+                gunOverheatCounter.text = "GUN OVERHEATED!!!";
             }
             //Muidu me oleme valmis jälle tulistama pärast 0,5 sekundit (normaalne tulistamine)
             else if (!overheated)
@@ -191,8 +194,11 @@ public class PlaneControls : MonoBehaviour
             //Siin me näitame, mitu kuuli on mängijal alles
             bulletCounter.text = "Bullets left: " + bullets;
 
-            //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks
-            gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
+            //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks kui me oleme valmis tulistame
+            if (readyToShoot)
+            {
+                gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
+            }
         }
 
         //See kood jookseb siis, kui mäng ei ole pausile pandud
