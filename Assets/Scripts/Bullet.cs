@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {        
         //Vaatame, kas objekt on objekt, mida saab ära purustada
-        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Enviroment")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Enviroment" && collision.gameObject.tag != hostTag)
         {
             for (int i = 0; i < GameObject.FindGameObjectsWithTag(collision.gameObject.tag).Count(); i++)
             {

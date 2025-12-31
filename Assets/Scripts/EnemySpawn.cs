@@ -44,8 +44,13 @@ public class EnemySpawn : MonoBehaviour
             //Siin me pöörame oma vastase mängija poole
             rotationOfEnemy = UnityEngine.Quaternion.LookRotation(player.transform.position - spawnPoint);
 
-            //Siin meie vastane ilmub
-            Instantiate(enemyPrefab, spawnPoint, rotationOfEnemy).tag = "Enemy" + i;
+            //Siin meie vastane ilmub ja me anname sellele kõige vajaliku info mis tal on vaja
+            GameObject enemy = Instantiate(enemyPrefab, spawnPoint, rotationOfEnemy);
+            enemy.tag = "Enemy" + i;
+            enemy.GetComponent<Enemy>().target = player;
+
+            //Lõpus me muudame selle nime, et järgmine vastane samuti saaks seda infot
+            enemy.name = "Mig31_" + i;
         }
     }
 }

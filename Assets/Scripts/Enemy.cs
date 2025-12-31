@@ -27,18 +27,12 @@ public class Enemy : MonoBehaviour
     // Seda koodi me jookseme alati
     void Update()
     {
-        //Paneme oma mängija vastase vastaseks
-        target = GameObject.FindGameObjectWithTag("Player");
-
         //Kontrollime, kas mängija on meil ikka olemas ja meie vastane näeb teda
         if (target != null)
         {
             //Kontrollime, kas mäng on pausile pandud
             if (target.GetComponent<PlaneControls>().pause != true)
             {
-                //Paneme oma mängija vastase vastaseks
-                target = GameObject.FindGameObjectWithTag("Player");
-
                 //Leiame kui kiiresti mängija liigub
                 Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
 
@@ -57,14 +51,17 @@ public class Enemy : MonoBehaviour
                 //Siin me pöörame vastast
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
 
+                //Siin meie vastane tulistab
                 if (readyToShoot)
                 {
+                    //Kuul ilmub
                     GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
-                    enemyBullet.GetComponent<Bullet>().hostTag = "Target";
+                    //Me anname kuulile info, et see vastast ei kustutaks
+                    enemyBullet.GetComponent<Bullet>().hostTag = gameObject.tag;
 
+                    //Vastane saab alles tulistada 1 sekund hiljem
                     readyToShoot = false;
-
                     Invoke("ReadyToShoot", 1f);
                 }
 
