@@ -83,7 +83,7 @@ public class PlaneControls : MonoBehaviour
         gameObject.tag = "Player";
 
         //Paneme hiirekursori ühte kohta ja teeme selle läbipaistvaks
-        
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     //Mängu sündmused toimuvad siin
