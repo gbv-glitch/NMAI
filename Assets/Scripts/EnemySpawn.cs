@@ -46,7 +46,6 @@ public class EnemySpawn : MonoBehaviour
 
             //Siin meie vastane ilmub
             Instantiate(enemyPrefab, spawnPoint, rotationOfEnemy).tag = "Enemy" + i;
-            Debug.Log("Tag is called " + "Enemy" + i);
         }
     }
 }

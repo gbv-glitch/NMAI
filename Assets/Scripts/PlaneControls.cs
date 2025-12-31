@@ -78,6 +78,12 @@ public class PlaneControls : MonoBehaviour
 
         //Paneme hääle mängima
         engineSound.Play();
+
+        //Paneme mängija tag-iks Player
+        gameObject.tag = "Player";
+
+        //Paneme hiirekursori ühte kohta ja teeme selle läbipaistvaks
+        
     }
 
     //Mängu sündmused toimuvad siin
