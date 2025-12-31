@@ -198,12 +198,6 @@ public class PlaneControls : MonoBehaviour
 
             //Siin me näitame, mitu kuuli on mängijal alles
             bulletCounter.text = "Bullets left: " + bullets;
-
-            //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks kui me oleme valmis tulistame
-            if (readyToShoot)
-            {
-                gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
-            }
         }
 
         //See kood jookseb siis, kui mäng ei ole pausile pandud
@@ -248,5 +242,8 @@ public class PlaneControls : MonoBehaviour
         
         //Paneme ennast tulistamiseks valmis
         readyToShoot = true;
+
+        //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks
+        gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
     }
 }
