@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
                 transform.position += transform.forward * Time.deltaTime * 15;
 
                 //Siin me arvutame, kuhu me peame pöörama
-                Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position);
+                Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-30f, 30f), UnityEngine.Random.Range(-30f, 30f), UnityEngine.Random.Range(-30f, 30f)));
 
                 //Siin me pöörame vastast
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
