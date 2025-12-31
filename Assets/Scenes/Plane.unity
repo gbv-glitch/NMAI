@@ -3737,7 +3737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   spawnPoint: {x: 0, y: 0, z: 0}
   player: {fileID: 752494107}
-  enemyPrefab: {fileID: 7153864132064388271, guid: 53eb529857811ed83bf874e0370ea2c3, type: 3}
+  enemyPrefab: {fileID: 6954552166297514040, guid: 7937f1fa9939c55b3bb51a3abee36902, type: 3}
   enemiesLeftToSpawn: 0
   rotationOfEnemy: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &1780665918

@@ -91,8 +91,15 @@ public class PlaneControls : MonoBehaviour
     {
         //Siin me vaatame, kas mäng on pausile pandud
         if (pause == false)
-        {    //Liigutame  lennuki edasi
-            transform.position += transform.forward * (planeMaxSpeed * planeSpeedPercent / 100) * Time.deltaTime;//Viimane on seal, et kõigil oleks ükskõik mis arvutil sama kiirus
+        {   //Liigutame  lennuki edasi
+            transform.position += transform.forward * (planeMaxSpeed * planeSpeedPercent / 100) * Time.deltaTime;//Viimane on seal, et kõigil oleks sama kiirus ükskõik mis arvutil
+
+            //Kontrollime, kas mootoriheli mängib
+            if (!engineSound.isPlaying)
+            {
+                //Paneme mootoriheli käima, kui see veel ei käi
+                engineSound.Play();
+            }
 
             //Me siin registreerime, mida mängija tahab teha
             horizontalInput = Input.GetAxis("Horizontal") * 4;
@@ -186,6 +193,13 @@ public class PlaneControls : MonoBehaviour
 
             //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks
             gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
+        }
+
+        //See kood jookseb siis, kui mäng ei ole pausile pandud
+        else
+        {
+            //Ei mängi mootori häält
+            engineSound.Stop();
         }
 
         //Siin me saame panna mängu pausile või selle jälle käima panna
