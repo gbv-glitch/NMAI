@@ -11,10 +11,10 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.UnityConsent;
 
-class StartButton : MonoBehaviour
+class ContinueButton : MonoBehaviour
 {
     //See on meie nupp, mida me vajutame, et alustada mängu
-    public UnityEngine.UI.Button startButton;
+    public UnityEngine.UI.Button button;
 
     // See kood ühe korra
     void Start()
@@ -23,13 +23,13 @@ class StartButton : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.None;
 
         //Kui nuppu vajutatakse, siis kutsume StartGame funktsiooni
-        startButton.onClick.AddListener(StartGame);
+        button.onClick.AddListener(MainMenu);
     }
 
     // See funktsioon muudab stseeni
-    private void StartGame()
+    private void MainMenu()
     {
         //Vahetame stseeni
-        SceneManager.LoadScene("Plane");
+        SceneManager.LoadScene("Starting menu");
     }
 }

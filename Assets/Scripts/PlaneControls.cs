@@ -223,9 +223,8 @@ public class PlaneControls : MonoBehaviour
         //Kontrollime, kas mängija on surnud
         if (hp == 0)
         {
-            SceneManager.LoadScene("Starting menu");
+            SceneManager.LoadScene("Death screen");
         }
-        print("Hp level: " + hp);
     }
 
     //Tulistamiseks valmis panemine
