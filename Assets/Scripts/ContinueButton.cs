@@ -16,9 +16,15 @@ class ContinueButton : MonoBehaviour
     //See on meie nupp, mida me vajutame, et alustada mängu
     public UnityEngine.UI.Button button;
 
+    //See on hääl, mis mängib kui me selle ekraani laadime
+    public AudioSource Sfx;
+
     // See kood ühe korra
     void Start()
     {
+        //Mängime oma hääleeffekti
+        Sfx.Play();
+        
         //Teeme nii, et hiirekursor on nähtav ja kasutav
         UnityEngine.Cursor.lockState = CursorLockMode.None;
 

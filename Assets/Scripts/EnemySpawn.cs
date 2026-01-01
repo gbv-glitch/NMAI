@@ -40,7 +40,7 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         //Siin me valime, mitu vastast peab ilmuma
-        enemiesLeftToSpawn = UnityEngine.Random.Range(5, 15);
+        enemiesLeftToSpawn = UnityEngine.Random.Range(5, 20);
 
         //Me teatame mängijale mitu vastast on alguses
         player.GetComponent<PlaneControls>().enemiesLeft = enemiesLeftToSpawn;
