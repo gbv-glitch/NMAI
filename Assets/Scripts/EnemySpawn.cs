@@ -45,7 +45,6 @@ public class EnemySpawn : MonoBehaviour
         //Me teatame mängijale mitu vastast on alguses
         player.GetComponent<PlaneControls>().enemiesLeft = enemiesLeftToSpawn;
 
-        Debug.Log(enemiesLeftToSpawn);
         //Siin me kontrollime, kas rohkem vastaseid peab ilmuma
         for (int i = 0; i <enemiesLeftToSpawn; i++)
         {
