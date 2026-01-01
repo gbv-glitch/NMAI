@@ -50,7 +50,7 @@ public class PlaneControls : MonoBehaviour
     public float planeSpeedPercent = 20;
 
     //Lennuki maksimum kiirus
-    public float planeMaxSpeed = 150;
+    public float planeMaxSpeed = 75;
 
     //Lennuki pööramine
     private float yaw;

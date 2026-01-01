@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //See objekt näitab meile selle vastase positiooni ekraanil
+    public GameObject indicator;
+
     //See on meie vastase elupunktide arv
     public float hp = 10;
 
@@ -50,7 +53,7 @@ public class Enemy : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f)));
 
                 //Siin me pöörame vastast
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 20 * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 25 * Time.deltaTime);
 
                 //Siin meie vastane tulistab
                 if (readyToShoot)
@@ -103,6 +106,9 @@ public class Enemy : MonoBehaviour
             //Leiame ühe lapse, mis on valitud i indexina
             Destroy(gameObject.transform.GetChild(i).gameObject);
         }
+
+        //Kustutame selle vastase näitaja
+        Destroy(indicator);
 
         //Ütleme mängijale, et vastaseid on üks vähem
         target.GetComponent<PlaneControls>().enemiesLeft -= 1;

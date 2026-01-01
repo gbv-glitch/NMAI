@@ -13,6 +13,15 @@ using UnityEngine.UIElements;
 
 public class EnemySpawn : MonoBehaviour
 {
+    //See on meie kaamera
+    public Camera cam;
+
+    //See on objekt, mis näitab meile, kus vastane asub
+    public GameObject indicatorPrefab;
+
+    //See on meie nn canvas(vaata Indicator skripti et saada seletust)
+    public Canvas canvas;
+
     //See on selleks, et valida, kuhhu meie vastane ilmub
     public UnityEngine.Vector3 spawnPoint;
 
@@ -52,8 +61,18 @@ public class EnemySpawn : MonoBehaviour
             enemy.tag = "Enemy" + i;
             enemy.GetComponent<Enemy>().target = player;
 
-            //Lõpus me muudame selle nime, et järgmine vastane samuti saaks seda infot
+            //Siin me teeme objekti, mis näitab selle vastase positiooni, anname sellele nn vanemaks oma canvase ja teatame vastasele sellest
+            GameObject indicator = Instantiate(indicatorPrefab, canvas.transform);
+            enemy.GetComponent<Enemy>().indicator = indicator;
+
+            //Anname oma näitajale teada, mis vastast, canvast ja kaamerat ta peab jälgima
+            indicator.GetComponent<Indicator>().target = enemy;
+            indicator.GetComponent<Indicator>().cam = cam;
+            indicator.GetComponent<Indicator>().canvas = canvas;
+
+            //Lõpus me muudame mõlema nime, et järgmised neist samuti saaks seda infot
             enemy.name = "Mig31_" + i;
+            indicator.name = "Indicator_" + i;
         }
     }
 }
