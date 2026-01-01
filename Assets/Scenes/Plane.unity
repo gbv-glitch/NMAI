@@ -1049,7 +1049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -785, y: -223}
+  m_AnchoredPosition: {x: -785, y: -366}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &362696606
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -146.04915, w: 28.70118}
+  m_margin: {x: 0, y: 0, z: -366.3922, w: 28.70118}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1824,6 +1824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447e3e62964a3f97cba3cd5fa8286af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaneControls
+  enemyCounter: {fileID: 938053739}
+  enemiesLeft: 0
   bullets: 600
   bulletCounter: {fileID: 839961929}
   gunOverheatCounter: {fileID: 362696606}
@@ -2173,7 +2175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -834, y: -105}
+  m_AnchoredPosition: {x: -834, y: -202}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839961929
@@ -2262,7 +2264,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -0.0014648438, z: -348.2846, w: 0}
+  m_margin: {x: 0, y: -0.0014648438, z: -662.33124, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2276,6 +2278,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839961927}
   m_CullTransparentMesh: 1
+--- !u!1 &938053737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 938053738}
+  - component: {fileID: 938053740}
+  - component: {fileID: 938053739}
+  m_Layer: 5
+  m_Name: Enemy Counter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &938053738
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938053737}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1486644537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 699, y: -322}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &938053739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938053737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Enemies left: '
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 90
+  m_fontSizeBase: 90
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -441.10727, y: 0, z: -150.02977, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &938053740
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938053737}
+  m_CullTransparentMesh: 1
 --- !u!1 &1133341420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2426,7 @@ GameObject:
   - component: {fileID: 1133341421}
   - component: {fileID: 1133341424}
   - component: {fileID: 1133341423}
-  - component: {fileID: 1133341422}
+  - component: {fileID: 1133341425}
   m_Layer: 5
   m_Name: Health Indicator
   m_TagString: Untagged
@@ -2315,30 +2454,6 @@ RectTransform:
   m_AnchoredPosition: {x: 720, y: 394}
   m_SizeDelta: {x: 60, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1133341422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133341420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ebb1d45548e73bf79e9fe99e4a34f3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpeedIndication
-  Player: {fileID: 752494107}
-  tenPercent: {fileID: 21300000, guid: 92539aaa3953c5abbacdc9fec7c14679, type: 3}
-  twentyPercent: {fileID: 21300000, guid: 199fc3edc4dbd5099b8d4006b2e43a4a, type: 3}
-  thirtyPercent: {fileID: 21300000, guid: f5bda6d9362a0a0ee9d6526a76db9481, type: 3}
-  fourtyPercent: {fileID: 21300000, guid: 21d2233ddae346632ace0abb4fcd75ee, type: 3}
-  fiftyPercent: {fileID: 21300000, guid: 1962f4ca3e4f9cbb48cd6b70a7016575, type: 3}
-  sixtyPercent: {fileID: 21300000, guid: fafc8f28ffd52667b89f587c184f7b02, type: 3}
-  seventyPercent: {fileID: 21300000, guid: f82c6746b56ef9002ac0c38e85ef0b77, type: 3}
-  eightyPercent: {fileID: 21300000, guid: b982005ae5fa25a5aa5e7025c0395b2a, type: 3}
-  ninetyPercent: {fileID: 21300000, guid: 13335560af442b9c396c1f4a23c02daa, type: 3}
-  hundredPercent: {fileID: 21300000, guid: 4c377847a602c2f20aeda562b21aa619, type: 3}
-  objectImage: {fileID: 1133341423}
 --- !u!114 &1133341423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2377,6 +2492,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133341420}
   m_CullTransparentMesh: 1
+--- !u!114 &1133341425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133341420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fd1f49e68ddb78cb9083a16c155448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthCounter
+  Player: {fileID: 752494107}
+  tenPercent: {fileID: 21300000, guid: 92539aaa3953c5abbacdc9fec7c14679, type: 3}
+  twentyPercent: {fileID: 21300000, guid: 199fc3edc4dbd5099b8d4006b2e43a4a, type: 3}
+  thirtyPercent: {fileID: 21300000, guid: f5bda6d9362a0a0ee9d6526a76db9481, type: 3}
+  fourtyPercent: {fileID: 21300000, guid: 21d2233ddae346632ace0abb4fcd75ee, type: 3}
+  fiftyPercent: {fileID: 21300000, guid: 1962f4ca3e4f9cbb48cd6b70a7016575, type: 3}
+  sixtyPercent: {fileID: 21300000, guid: fafc8f28ffd52667b89f587c184f7b02, type: 3}
+  seventyPercent: {fileID: 21300000, guid: f82c6746b56ef9002ac0c38e85ef0b77, type: 3}
+  eightyPercent: {fileID: 21300000, guid: b982005ae5fa25a5aa5e7025c0395b2a, type: 3}
+  ninetyPercent: {fileID: 21300000, guid: 13335560af442b9c396c1f4a23c02daa, type: 3}
+  hundredPercent: {fileID: 21300000, guid: 4c377847a602c2f20aeda562b21aa619, type: 3}
+  objectImage: {fileID: 1133341423}
 --- !u!1 &1236525662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3544,6 +3683,7 @@ RectTransform:
   - {fileID: 1133341421}
   - {fileID: 839961928}
   - {fileID: 362696605}
+  - {fileID: 938053738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

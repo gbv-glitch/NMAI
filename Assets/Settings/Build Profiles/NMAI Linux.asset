@@ -24,6 +24,10 @@ MonoBehaviour:
     m_path: Assets/Scenes/Starting menu.unity
   - m_enabled: 1
     m_path: Assets/Scenes/Plane.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Death screen.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Victory screen.unity
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:

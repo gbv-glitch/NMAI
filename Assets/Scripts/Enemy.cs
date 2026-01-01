@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+    //See on meie vastase elupunktide arv
+    public float hp = 10;
+
     //See on meie mängija
     public GameObject target;
 
@@ -43,7 +44,7 @@ public class Enemy : MonoBehaviour
                 Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
 
                 // Liigutame vastase edasi
-                transform.position += transform.forward * Time.deltaTime * 15;
+                transform.position += transform.forward * Time.deltaTime * 30;
 
                 //Siin me arvutame, kuhu me peame pöörama
                 Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f)));
@@ -68,6 +69,13 @@ public class Enemy : MonoBehaviour
 
                 //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
                 targetLastFramePosition = target.transform.position;}
+
+                //Kontrollime, kas see vastane peaks elus olema
+                if (hp <= 0)
+                {
+                    //Vastane kustutakse
+                    SelfDestroy();
+                }
             }
         }
 
@@ -84,5 +92,22 @@ public class Enemy : MonoBehaviour
         {
             transform.GetChild(i).tag = tag;
         }
+    }
+
+    //See on kood, mida me jookseme, kui meie vastane saab kuuliga pihta
+    public void SelfDestroy()
+    {
+        //Kustutame kõik nn lapsed
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            //Leiame ühe lapse, mis on valitud i indexina
+            Destroy(gameObject.transform.GetChild(i).gameObject);
+        }
+
+        //Ütleme mängijale, et vastaseid on üks vähem
+        target.GetComponent<PlaneControls>().enemiesLeft -= 1;
+
+        //Kustutame selle objekti ka ära
+        Destroy(gameObject);
     }
 }

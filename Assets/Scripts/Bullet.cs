@@ -37,15 +37,7 @@ public class Bullet : MonoBehaviour
         //Vaatame, kas objekt on objekt, mida saab ära purustada
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Enviroment" && collision.gameObject.tag != hostTag)
         {
-            for (int i = 0; i < GameObject.FindGameObjectsWithTag(collision.gameObject.tag).Count(); i++)
-            {
-                //Kustutame objekti mis valitud on
-                Destroy(GameObject.FindGameObjectsWithTag(collision.gameObject.tag)[i]);
-            }
-
-
-            //Ütleme mängijale, et vastaseid on üks vähem
-            player.GetComponent<PlaneControls>().enemiesLeft -= 1;
+            collision.gameObject.GetComponentInParent<Enemy>().hp -= 1;
         }
 
         //Siin me kontrollime kas kuul on vastase oma ja kas see on mängijale pihta saanud
