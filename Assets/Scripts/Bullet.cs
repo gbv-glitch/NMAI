@@ -37,7 +37,12 @@ public class Bullet : MonoBehaviour
         //Vaatame, kas objekt on objekt, mida saab ära purustada
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Enviroment" && collision.gameObject.tag != hostTag)
         {
-            collision.gameObject.GetComponentInParent<Enemy>().hp -= 1;
+            //Kontrollime, kas objekti nn vanemal on Enemy komponent
+            if (collision.gameObject.GetComponentInParent<Enemy>() != null)
+            {
+                //Kui on, võtame objektilt elu ära
+                collision.gameObject.GetComponentInParent<Enemy>().hp -= 1;
+            }
         }
 
         //Siin me kontrollime kas kuul on vastase oma ja kas see on mängijale pihta saanud
