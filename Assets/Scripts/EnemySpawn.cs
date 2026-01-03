@@ -69,6 +69,9 @@ public class EnemySpawn : MonoBehaviour
             indicator.GetComponent<Indicator>().cam = cam;
             indicator.GetComponent<Indicator>().canvas = canvas;
 
+            //Paneme vastase mängija nimekirja kirja
+            player.GetComponent<PlaneControls>().allEnemies.Add(enemy);
+
             //Lõpus me muudame mõlema nime, et järgmised neist samuti saaks seda infot
             enemy.name = "Mig31_" + i;
             indicator.name = "Indicator_" + i;

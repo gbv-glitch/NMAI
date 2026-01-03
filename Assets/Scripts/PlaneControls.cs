@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
 using Unity.Mathematics;
@@ -13,11 +15,25 @@ using UnityEngine.UnityConsent;
 
 public class PlaneControls : MonoBehaviour
 {
+    //See on meie peamine kaamera
+    public Camera mainCamera;
+
+    //See on meie otsimiskaamera, mis valib otsitava objekti
+    public Camera radar;
+
+    //See on meie valitud objekt, mida meie rakett otsib
+    public GameObject lockedTarget;
     //See on tekst, mis näitab mitu vastast on alles
     public TextMeshProUGUI enemyCounter;
 
+    //See on meie vastaste nimekiri
+    public List<GameObject> enemies;
+
     //Mitu vastast on alles
     public float enemiesLeft;
+
+    //Kõik meie vastased
+    public List<GameObject> allEnemies;
 
     //Kuulide arv
     public float bullets = 600;
@@ -59,6 +75,9 @@ public class PlaneControls : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    //Kõik vastased, mis on meie otsivale kaamerale nähtav
+    public List<GameObject> allEnemiesDetectable;
+
     //Püssikuul
     public GameObject bulletPrefab;
 
@@ -80,9 +99,15 @@ public class PlaneControls : MonoBehaviour
     //Kontrollimiseks, ega me pea ootama kuni paneme ennast jälle valmis tulistama
     public bool overheated = false;
 
+    //See on meie rakett
+    public GameObject missile;
+
     //Selle koodi me jookseme ühe korra mängu alguses
     void Start()
     {
+        //Oleme kindlad, et õige kaamera on aktiivne
+        radar.enabled = false;
+        mainCamera.enabled = true;
         //Paneme heli staatuse selliseks, et see mängiks iga kord kui see ära lõppeb
         engineSound.loop = true;
 
@@ -99,6 +124,36 @@ public class PlaneControls : MonoBehaviour
     //Mängu sündmused toimuvad siin
     private void Update()
     {
+        //Siin me leiame kõik objektid, mida meie otsiv kaamera näeb
+        for (int i = 0; i < allEnemies.Count; i++)
+        {
+            //Leiame, mis positioon vastasel oleks ekraanil
+            UnityEngine.Vector3 screenPosOfEnemy = radar.WorldToScreenPoint(allEnemies[i].transform.position);
+
+            //Kui see vastane on kaameral nähtav, paneme selle õigesse nimekirja
+            if (screenPosOfEnemy.z <= 0)
+            {
+                allEnemiesDetectable.Add(allEnemies[i]);
+            }
+        }
+
+        //Kui me pole ühte vastast valinud, mida jälgida või see  vastane on kaamera vaatest väljaspool, valime ühe juhuslikult
+        if (lockedTarget == null || radar.WorldToScreenPoint(lockedTarget.transform.position).z <= 0)
+        {
+            //Me peame samuti sellele vastasele ütlema, et ta ei ole enam valitud
+            if (lockedTarget != null)
+            {
+                lockedTarget.GetComponent<Enemy>().indicator.GetComponent<Indicator>().isLocked = false;
+            }
+            lockedTarget = allEnemiesDetectable[UnityEngine.Random.Range(0, allEnemiesDetectable.Count - 1)];
+        }
+
+        //Anname valitud vastase näitajale teada, et tema vastane on välja valitud
+        if (lockedTarget != null)
+        {
+            lockedTarget.GetComponent<Enemy>().indicator.GetComponent<Indicator>().isLocked  = true; 
+        }
+
         //Siin me vaatame, kas mäng on pausile pandud
         if (pause == false)
         {   //Liigutame  lennuki edasi
@@ -123,8 +178,8 @@ public class PlaneControls : MonoBehaviour
             //Pöörame lennuki osad, et see näeb realistilisem välja
             rightElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
             leftElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
-            rightCanard.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
-            leftCanard.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
+            rightCanard.localRotation = Quaternion.Euler(new Vector3(-135 * MathF.Abs(roll / 90), 0, 0));
+            leftCanard.localRotation = Quaternion.Euler(new Vector3(-135 * MathF.Abs(roll / 90), 0, 0));
 
             //Siin me pöörame oma mängijat
             transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll * 3);
@@ -206,6 +261,18 @@ public class PlaneControls : MonoBehaviour
             bulletCounter.text = "Bullets left: " + bullets;
         }
 
+        if (Input.GetMouseButtonDown(3))
+        {
+            //GameObject Missile = Instantiate(missile);
+            //Missile.GetComponent<Missile>().target = lockedTarget;
+            print ("Ok");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print ("BOOM!! Nice shot man");
+        }
+
         //See kood jookseb siis, kui mäng ei ole pausile pandud
         else
         {
@@ -225,6 +292,8 @@ public class PlaneControls : MonoBehaviour
                 pause = true;
             }
         }
+
+        print(lockedTarget);
 
         // Kontrollime, kas mängija on surnud
         if (hp <= 0)

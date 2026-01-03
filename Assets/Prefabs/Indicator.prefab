@@ -88,6 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4f556ac335789a58a41417210af9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Indicator
+  isLocked: 0
+  lockedOn: {fileID: 21300000, guid: 13bd6d70860c35ef5964be816acbee22, type: 3}
   target: {fileID: 0}
   blank: {fileID: 21300000, guid: ec36f763cd8f8a863ae45caf94ec9dca, type: 3}
   normal: {fileID: 21300000, guid: 4c50848efcef0c6f0ab9461a90b731e5, type: 3}

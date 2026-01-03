@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         //Me ei taha selles mängus, et kuulid kukuksid
-        rigidbodyBullet.useGravity = false;
+        rigidbodyBullet.useGravity = true;
 
         //See on spetsiifiliselt kiirete objektide kokkupõrke tuvastamine
         rigidbodyBullet.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;

@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class Indicator : MonoBehaviour
 {
+    //See näitab, kas jälgitav vastane on välja valitud
+    public bool isLocked = false;
+
+    //See on pilt, mida me näitame kui jälgitav vastane on valitud
+    public Sprite lockedOn;
+
     //See on see objekt, mida meie objekt selle koodiga näitab
     public GameObject target;
 
@@ -41,6 +47,13 @@ public class Indicator : MonoBehaviour
         {
             //Me paneme selle näitaja pildiks normaalse pildi
             indicatorUI.GetComponent<Image>().sprite = normal;
+
+
+            //Kui meie jälgitav vastane on välja valitud, näitame õiget pilti
+            if (isLocked)
+            {
+                indicatorUI.GetComponent<Image>().sprite = lockedOn;
+            }
 
             //Siin me teeme oma positiooni canvas positiooniks
             UnityEngine.Vector2 canvasPos;

@@ -112,6 +112,13 @@ public class Enemy : MonoBehaviour
 
         //Ütleme mängijale, et vastaseid on üks vähem
         target.GetComponent<PlaneControls>().enemiesLeft -= 1;
+        target.GetComponent<PlaneControls>().allEnemies.Remove(gameObject);
+
+        //Kui see vastane on nähtav, kui me selle ära tapame, võtame ta ka sellest nimekirjast ära
+        if (target.GetComponent<PlaneControls>().allEnemiesDetectable.Contains(gameObject))
+        {
+            target.GetComponent<PlaneControls>().allEnemiesDetectable.Remove(gameObject);
+        }
 
         //Kustutame selle objekti ka ära
         Destroy(gameObject);
