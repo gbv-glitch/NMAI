@@ -287,10 +287,11 @@ public class PlaneControls : MonoBehaviour
             //Siin me näitame, mitu kuuli on mängijal alles
             bulletCounter.text = "Bullets left: " + bullets;
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(1))
             {
                 GameObject Missile = Instantiate(missile, transform.position, transform.rotation);
                 Missile.GetComponent<Missile>().target = lockedTarget;
+                print("Missile target is: " + Missile.GetComponent<Missile>().target + ". And should be: " + lockedTarget);
                 Missile.GetComponent<Missile>().mainCamera = mainCamera;
                 print ("Ok");
             }

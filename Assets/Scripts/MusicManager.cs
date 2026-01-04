@@ -10,9 +10,6 @@ public class MusicManager : MonoBehaviour
     //See kood jookseb ühe korra
     void Start()
     {
-        //See teeb nii, et meie muusika ei kaoks ära mängu ajal
-        DontDestroyOnLoad(gameObject);
-
         //Teeme nii, et muusika jälle mängiks, kui ta lõppeb ja paneme selle mängima
         music.loop = true;
         music.Play();

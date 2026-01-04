@@ -1099,7 +1099,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 15
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1117,6 +1117,37 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &299040475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299040476}
+  m_Layer: 0
+  m_Name: Pauser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299040476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299040475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 339.88083, y: 5.14281, z: 678.63257}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +2941,7 @@ MonoBehaviour:
   leftElevon: {fileID: 1867624192}
   playerPosition: {fileID: 752494109}
   planeSpeedPercent: 20
-  planeMaxSpeed: 0
+  planeMaxSpeed: 75
   allEnemiesDetectable: []
   bulletPrefab: {fileID: 1945408128560347204, guid: 49ac88136aaf1113b89d976ffe4c662a, type: 3}
   bulletSpawn: {fileID: 11140141}
@@ -7102,3 +7133,4 @@ SceneRoots:
   - {fileID: 1780665918}
   - {fileID: 364407420}
   - {fileID: 1468335512}
+  - {fileID: 299040476}

@@ -59,11 +59,11 @@ public class Enemy : MonoBehaviour
                 if (readyToShoot)
                 {
                     //Kuul ilmub
-                    //GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
                     //Me anname kuulile info, mida sellel on vaja
-                    //enemyBullet.GetComponent<Bullet>().hostTag = gameObject.tag;
-                    //enemyBullet.GetComponent<Bullet>().player = target;
+                    enemyBullet.GetComponent<Bullet>().hostTag = gameObject.tag;
+                    enemyBullet.GetComponent<Bullet>().player = target;
 
                     //Vastane saab alles tulistada 1 sekund hiljem
                     readyToShoot = false;
@@ -71,7 +71,8 @@ public class Enemy : MonoBehaviour
                 }
 
                 //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
-                targetLastFramePosition = target.transform.position;}
+                targetLastFramePosition = target.transform.position;
+            }
 
                 //Kontrollime, kas see vastane peaks elus olema
                 if (hp <= 0)

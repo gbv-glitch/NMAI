@@ -24,27 +24,24 @@ public class Missile : MonoBehaviour
     //See on, kui palju otsitava objekti süsteemid raketti segavad
     public float targetJamming;
 
-    //See on raketi kaamera, mis vaatab, kas otsitav objekt on nähtav
-    public Camera cam;
-
-    void Update()
+    //See kood jookseb ühe korra
+    void Start()
     {
-        //Oleme kindlad, et meie kaamera samuti töötab
-        cam.enabled = true;
-        
-        //Siin me võtame oma target objekti positiooni ja leiame selle positiooni ekraanil (canvase peal)
-        //UnityEngine.Vector3 screenPosOfTarget = cam.WorldToScreenPoint(target.transform.position);
-
+        Destroy(gameObject, 10);
+    }
+    //See kood jookseb iga kaader
+    void Update()
+    {        
         if(target != null)
         {
             Vector3 toTarget = target.transform.position - transform.position;
             float angle = Vector3.Angle(transform.forward, toTarget);
             
-            bool hasLock = angle < 90 * 0.5f;
+            bool hasLock = angle < 180 * 0.5f;
             if (hasLock)
             {
                 //See on meie otsitava objekti kiirus
-                UnityEngine.Vector3 targetSpeed = (target.transform.position - targetLastFramePos) / Time.deltaTime;
+                UnityEngine.Vector3 targetSpeed = (target.transform.position - targetLastFramePos) * Time.deltaTime;
                 
                 //See on aeg kuni me otsitava objektiga kokku põrkame
                 float timeToHit = UnityEngine.Vector3.Distance(transform.position, targetLastFramePos) / (missileSpeed * Time.deltaTime);
@@ -69,7 +66,7 @@ public class Missile : MonoBehaviour
             }
 
             //Liigutame raketi edasi
-            transform.position += missileSpeed * transform.forward / Time.deltaTime;
+            transform.position += missileSpeed * transform.forward * Time.deltaTime;
 
             //Siin me kontrollime, kas rakett on otsitava objekti läheduses, ja kui on, siis see plahvatab
             if(Vector3.Distance(transform.position, target.transform.position) <= proximityFuze)
@@ -77,8 +74,6 @@ public class Missile : MonoBehaviour
                 Explode(true);
             }
         }
-
-        print(transform.forward);
     }
 
     //See on meie plahvatamismeeteod
