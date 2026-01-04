@@ -15,6 +15,9 @@ using UnityEngine.UnityConsent;
 
 public class PlaneControls : MonoBehaviour
 {
+    //Nii mitu raketti meil on
+    public float missiles;
+
     //See on meie peamine kaamera
     public Camera mainCamera;
 
@@ -39,7 +42,7 @@ public class PlaneControls : MonoBehaviour
     public float bullets = 600;
 
     //Kuulide arvu näitaja ekraanil
-    public TextMeshProUGUI bulletCounter;
+    public TextMeshProUGUI weaponsCounter;
 
     //Kuulide arv kuni kahur ei tööta enam
     public TextMeshProUGUI gunOverheatCounter;
@@ -279,15 +282,15 @@ public class PlaneControls : MonoBehaviour
         }
 
         //Siin me näitame, mitu kuuli on mängijal alles
-        bulletCounter.text = "Bullets left: " + bullets;
+        weaponsCounter.text = "Bullets left: " + bullets + "\nMissiles left: " + missiles;
 
-        if (Input.GetMouseButtonDown(1))
+        //Tulistame raketti kui neid veel alles on, muudame muutuja ja anname sellele tähtsa info
+        if (Input.GetMouseButtonDown(1) && missiles > 0)
         {
             GameObject Missile = Instantiate(missile, transform.position, transform.rotation);
             Missile.GetComponent<Missile>().target = lockedTarget;
-            print("Missile target is: " + Missile.GetComponent<Missile>().target + ". And should be: " + lockedTarget);
             Missile.GetComponent<Missile>().mainCamera = mainCamera;
-            print ("Ok");
+            missiles -= 1f;
         }
 
         // Kontrollime, kas mängija on surnud
