@@ -90,9 +90,6 @@ public class PlaneControls : MonoBehaviour
     //Mootori hääl
     public AudioSource engineSound;
 
-    //Pausile panemise võimalus
-    public bool pause = false;
-
     //Kahuri laskmiskiiruse vähendamiseks
     public bool readyToShoot = true;
 
@@ -181,140 +178,116 @@ public class PlaneControls : MonoBehaviour
             lockedTarget.GetComponent<Enemy>().indicator.GetComponent<Indicator>().isLocked  = true; 
         }
 
-        //Siin me vaatame, kas mäng on pausile pandud
-        if (pause == false)
-        {   //Liigutame  lennuki edasi
-            transform.position += transform.forward * (planeMaxSpeed * planeSpeedPercent / 100) * Time.deltaTime;//Viimane on seal, et kõigil oleks sama kiirus ükskõik mis arvutil
+        //Liigutame  lennuki edasi
+        transform.position += transform.forward * (planeMaxSpeed * planeSpeedPercent / 100) * Time.deltaTime;//Viimane on seal, et kõigil oleks sama kiirus ükskõik mis arvutil
 
-            //Kontrollime, kas mootoriheli mängib
-            if (!engineSound.isPlaying)
-            {
-                //Paneme mootoriheli käima, kui see veel ei käi
-                engineSound.Play();
-            }
-
-            //Me siin registreerime, mida mängija tahab teha
-            horizontalInput = Input.GetAxis("Horizontal") * 4;
-            verticalInput = -(Input.GetAxis("Vertical") * 5);
-
-            //Siin paneme info oma muutujasse
-            yaw += horizontalInput * Time.deltaTime * 25;
-            pitch = Mathf.Abs(verticalInput) * MathF.Sign(verticalInput * Time.deltaTime) * 4;
-            roll = Mathf.Abs(horizontalInput) * -MathF.Sign(horizontalInput * Time.deltaTime) * 7.5f;
-
-            //Pöörame lennuki osad, et see näeb realistilisem välja
-            rightElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
-            leftElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
-            rightCanard.localRotation = Quaternion.Euler(new Vector3(-135 * MathF.Abs(roll / 90), 0, 0));
-            leftCanard.localRotation = Quaternion.Euler(new Vector3(-135 * MathF.Abs(roll / 90), 0, 0));
-
-            //Siin me pöörame oma mängijat
-            transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll * 3);
-
-            //Siin me toome kaamera mängija järel
-            mainCameraGuidePosition.position = playerPosition.position;
-
-            //Siin me pöörame oma kaamerat mängija järel
-            mainCameraGuidePosition.Rotate(0, horizontalInput * Time.deltaTime * 25, 0);
-
-            //Siin me muudame mängija kiirust
-            planeSpeedPercent += Input.mouseScrollDelta.y * 10;
-
-            //Selleks et mängija ei saaks kohal seista, kontrollime, kas lennukiiruse protsent on väiksem kui kümme. Kui on, siis me paneme selle kümneks.
-            if (planeSpeedPercent <= 10)
-            {
-                planeSpeedPercent = 10;
-            }
-
-
-            //Selleks et mängija ei saaks liiga kiiresti lennata, kontrollime, kas lennukiiruse protsent on üle saja. Kui on, siis me paneme selle sajaks.
-            if (planeSpeedPercent >= 100)
-            {
-                planeSpeedPercent = 100;
-            }
-
-            //Siin me tulistame, kui mängija vajutab hiirele, kui me oleme tulistamiseks valmis ja kui meil on veel kuuli alles
-
-            if (Input.GetMouseButton(0) && readyToShoot && bullets > 0)
-            {
-                //Tekitame uue kuuli ja anname sellele vajaliku info
-                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-                bullet.GetComponent<Bullet>().hostTag = "Player";
-                bullet.GetComponent<Bullet>().player = gameObject;
-
-                //Võtame kuulide arvust ühe ära
-                bullets -= 1f;
-
-                //Paneme ühe juurde meie kuulide korraga tulistamise lugejale
-                bulletsInOneBurst += 1;
-                
-                //Mängime püssiheli
-                bulletSound.PlayOneShot(bulletSound.clip);
-
-                //Selleks, et me ei saaks tulistada kohe pärast tulistamist
-                readyToShoot = false;
-            }
-
-            //Kontrollime, kas mängija laseb laskmise nupust lahti
-            if (Input.GetMouseButtonUp(0))
-            {
-                //Paneme korraga tulistatud kuulide lugeja nulli
-                bulletsInOneBurst = 0;
-            }
-
-            //Kontrollime, kas mängija on liiga palju kuule tulistanud korraga
-            if (bulletsInOneBurst >= 50)
-            {
-                //Selleks, et me järgmine kaader kohe ei saa tulistada
-                overheated = true;
-
-                //Tühistame olemasolevad invoke-kutsed, et vältida nende kogunemist
-                CancelInvoke("ReadyToShoot");
-                
-                //Paneme ennast valmis tulistama peale 10 sekundi
-                Invoke("ReadyToShoot", 10f);
-
-                //Näitame, et me ei saa veel tulistada
-                gunOverheatCounter.text = "GUN OVERHEATED!!!";
-            }
-            //Muidu me oleme valmis jälle tulistama pärast 0,5 sekundit (normaalne tulistamine)
-            else if (!overheated)
-            {
-                //Paneme ennast valmis tulistama peale 0,5 sekundi
-                Invoke("ReadyToShoot", 0.5f);
-            }
-
-            //Siin me näitame, mitu kuuli on mängijal alles
-            bulletCounter.text = "Bullets left: " + bullets;
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                GameObject Missile = Instantiate(missile, transform.position, transform.rotation);
-                Missile.GetComponent<Missile>().target = lockedTarget;
-                print("Missile target is: " + Missile.GetComponent<Missile>().target + ". And should be: " + lockedTarget);
-                Missile.GetComponent<Missile>().mainCamera = mainCamera;
-                print ("Ok");
-            }
+        //Kontrollime, kas mootoriheli mängib
+        if (!engineSound.isPlaying)
+        {
+            //Paneme mootoriheli käima, kui see veel ei käi
+            engineSound.Play();
         }
 
-        //See kood jookseb siis, kui mäng ei ole pausile pandud
-        else
+        //Me siin registreerime, mida mängija tahab teha
+        horizontalInput = Input.GetAxis("Horizontal") * 4;
+        verticalInput = -(Input.GetAxis("Vertical") * 5);
+
+        //Siin paneme info oma muutujasse
+        yaw += horizontalInput * Time.deltaTime * 25;
+        pitch = Mathf.Abs(verticalInput) * MathF.Sign(verticalInput * Time.deltaTime) * 4;
+        roll = Mathf.Abs(horizontalInput) * -MathF.Sign(horizontalInput * Time.deltaTime) * 7.5f;
+
+        //Pöörame lennuki osad, et see näeb realistilisem välja
+        rightElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
+        leftElevon.localRotation = Quaternion.Euler(new Vector3(135 * MathF.Abs(roll / 90), 0, 0));
+        rightCanard.localRotation = Quaternion.Euler(new Vector3(-135 * MathF.Abs(roll / 90), 0, 0));
+        leftCanard.localRotation = Quaternion.Euler(new Vector3(-135 * MathF.Abs(roll / 90), 0, 0));
+
+        //Siin me pöörame oma mängijat
+        transform.rotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll * 3);
+
+        //Siin me toome kaamera mängija järel
+        mainCameraGuidePosition.position = playerPosition.position;
+
+        //Siin me pöörame oma kaamerat mängija järel
+        mainCameraGuidePosition.Rotate(0, horizontalInput * Time.deltaTime * 25, 0);
+
+        //Siin me muudame mängija kiirust
+        planeSpeedPercent += Input.mouseScrollDelta.y * 10;
+
+        //Selleks et mängija ei saaks kohal seista, kontrollime, kas lennukiiruse protsent on väiksem kui kümme. Kui on, siis me paneme selle kümneks.
+        if (planeSpeedPercent <= 10)
         {
-            //Ei mängi mootori häält
-            engineSound.Stop();
+            planeSpeedPercent = 10;
         }
 
-        //Siin me saame panna mängu pausile või selle jälle käima panna
-        if (Input.GetKeyDown(KeyCode.P))
+
+        //Selleks et mängija ei saaks liiga kiiresti lennata, kontrollime, kas lennukiiruse protsent on üle saja. Kui on, siis me paneme selle sajaks.
+        if (planeSpeedPercent >= 100)
         {
-            if (pause == true)
-            {
-                pause = false;
-            }
-            else
-            {
-                pause = true;
-            }
+            planeSpeedPercent = 100;
+        }
+
+        //Siin me tulistame, kui mängija vajutab hiirele, kui me oleme tulistamiseks valmis ja kui meil on veel kuuli alles
+        if (Input.GetMouseButton(0) && readyToShoot && bullets > 0)
+        {
+            //Tekitame uue kuuli ja anname sellele vajaliku info
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+            bullet.GetComponent<Bullet>().hostTag = "Player";
+            bullet.GetComponent<Bullet>().player = gameObject;
+
+            //Võtame kuulide arvust ühe ära
+            bullets -= 1f;
+
+            //Paneme ühe juurde meie kuulide korraga tulistamise lugejale
+            bulletsInOneBurst += 1;
+                
+            //Mängime püssiheli
+            bulletSound.PlayOneShot(bulletSound.clip);
+
+            //Selleks, et me ei saaks tulistada kohe pärast tulistamist
+            readyToShoot = false;
+        }
+
+        //Kontrollime, kas mängija laseb laskmise nupust lahti
+        if (Input.GetMouseButtonUp(0))
+        {
+            //Paneme korraga tulistatud kuulide lugeja nulli
+            bulletsInOneBurst = 0;
+        }
+
+        //Kontrollime, kas mängija on liiga palju kuule tulistanud korraga
+        if (bulletsInOneBurst >= 50)
+        {
+            //Selleks, et me järgmine kaader kohe ei saa tulistada
+            overheated = true;
+
+            //Tühistame olemasolevad invoke-kutsed, et vältida nende kogunemist
+            CancelInvoke("ReadyToShoot");
+                
+            //Paneme ennast valmis tulistama peale 10 sekundi
+            Invoke("ReadyToShoot", 10f);
+
+            //Näitame, et me ei saa veel tulistada
+            gunOverheatCounter.text = "GUN OVERHEATED!!!";
+        }
+        //Muidu me oleme valmis jälle tulistama pärast 0,5 sekundit (normaalne tulistamine)
+        else if (!overheated)
+        {
+            //Paneme ennast valmis tulistama peale 0,5 sekundi
+            Invoke("ReadyToShoot", 0.5f);
+        }
+
+        //Siin me näitame, mitu kuuli on mängijal alles
+        bulletCounter.text = "Bullets left: " + bullets;
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            GameObject Missile = Instantiate(missile, transform.position, transform.rotation);
+            Missile.GetComponent<Missile>().target = lockedTarget;
+            print("Missile target is: " + Missile.GetComponent<Missile>().target + ". And should be: " + lockedTarget);
+            Missile.GetComponent<Missile>().mainCamera = mainCamera;
+            print ("Ok");
         }
 
         // Kontrollime, kas mängija on surnud

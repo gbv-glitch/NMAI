@@ -34,54 +34,50 @@ public class Enemy : MonoBehaviour
         //Kontrollime, kas mängija on meil ikka olemas ja meie vastane näeb teda
         if (target != null)
         {
-            //Kontrollime, kas mäng on pausile pandud
-            if (target.GetComponent<PlaneControls>().pause != true)
+            //Leiame kui kiiresti mängija liigub
+            Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
+
+            //Leiame aja, mis on meie kuulil vaja, et mängijale pihta saada
+            float timeToHit = Vector3.Distance(transform.position, targetLastFramePosition) / 300f;
+
+            //Leiame, kus mängija on timeToHit skundi pärast
+            Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
+
+            // Liigutame vastase edasi
+            transform.position += transform.forward * Time.deltaTime * 30;
+
+            //Siin me arvutame, kuhu me peame pöörama
+            Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f)));
+
+            //Siin me pöörame vastast
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 25 * Time.deltaTime);
+
+            //Siin meie vastane tulistab
+            if (readyToShoot)
             {
-                //Leiame kui kiiresti mängija liigub
-                Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
+                //Kuul ilmub
+                GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
-                //Leiame aja, mis on meie kuulil vaja, et mängijale pihta saada
-                float timeToHit = Vector3.Distance(transform.position, targetLastFramePosition) / 300f;
+                //Me anname kuulile info, mida sellel on vaja
+                enemyBullet.GetComponent<Bullet>().hostTag = gameObject.tag;
+                enemyBullet.GetComponent<Bullet>().player = target;
 
-                //Leiame, kus mängija on timeToHit skundi pärast
-                Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
-
-                // Liigutame vastase edasi
-                transform.position += transform.forward * Time.deltaTime * 30;
-
-                //Siin me arvutame, kuhu me peame pöörama
-                Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - new Vector3(UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f), UnityEngine.Random.Range(-20f, 20f)));
-
-                //Siin me pöörame vastast
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 25 * Time.deltaTime);
-
-                //Siin meie vastane tulistab
-                if (readyToShoot)
-                {
-                    //Kuul ilmub
-                    GameObject enemyBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-
-                    //Me anname kuulile info, mida sellel on vaja
-                    enemyBullet.GetComponent<Bullet>().hostTag = gameObject.tag;
-                    enemyBullet.GetComponent<Bullet>().player = target;
-
-                    //Vastane saab alles tulistada 1 sekund hiljem
-                    readyToShoot = false;
-                    Invoke("ReadyToShoot", 1f);
-                }
-
-                //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
-                targetLastFramePosition = target.transform.position;
+                //Vastane saab alles tulistada 1 sekund hiljem
+                readyToShoot = false;
+                Invoke("ReadyToShoot", 1f);
             }
 
-                //Kontrollime, kas see vastane peaks elus olema
-                if (hp <= 0)
-                {
-                    //Vastane kustutakse
-                    SelfDestroy();
-                }
+            //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
+            targetLastFramePosition = target.transform.position;
+
+            //Kontrollime, kas see vastane peaks elus olema
+            if (hp <= 0)
+            {
+                //Vastane kustutakse
+                SelfDestroy();
             }
         }
+    }
 
     //Siin me teeme ennast valmis tulistama
     void ReadyToShoot()
