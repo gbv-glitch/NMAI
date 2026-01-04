@@ -50,7 +50,13 @@ public class Bullet : MonoBehaviour
         {
             //Võtame mängijalt elu ära
             player.GetComponent<PlaneControls>().hp -= 1f;
-        }    
+        }
+
+        //Kustutame kuuli ära, kui see pole selle objektiga kokku põrganud, mis seda tulistas
+        if (collision.gameObject.tag != hostTag)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

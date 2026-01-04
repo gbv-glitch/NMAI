@@ -124,28 +124,55 @@ public class PlaneControls : MonoBehaviour
     //Mängu sündmused toimuvad siin
     private void Update()
     {
+        //Tühistame oma nimekirja kõikidest leitavatest vastastest, et me ei valiks kogemata vastast, mida me tegelikult ei näe
+        allEnemiesDetectable.Clear();
+
         //Siin me leiame kõik objektid, mida meie otsiv kaamera näeb
         for (int i = 0; i < allEnemies.Count; i++)
         {
-            //Leiame, mis positioon vastasel oleks ekraanil
-            UnityEngine.Vector3 screenPosOfEnemy = radar.WorldToScreenPoint(allEnemies[i].transform.position);
+            //See näitab meile vastase kordinaadid kaamera suhtes
+            Vector3 viewPortPos = radar.WorldToViewportPoint(allEnemies[i].transform.position);
+            //Leiame, kas vastane on ekraanil
+            bool isVisible = viewPortPos.z > 0 && viewPortPos.x < 1 && viewPortPos.x > 0 && viewPortPos.y < 1 && viewPortPos.y > 0;//1 on meie kaamera vaatevälja parem ja ülemine äär, 0 on vasak ja alumine äär, ja kui z kordinaat on negatiivne, on objekt kaamera taga
 
             //Kui see vastane on kaameral nähtav, paneme selle õigesse nimekirja
-            if (screenPosOfEnemy.z <= 0)
+            if (isVisible)
             {
                 allEnemiesDetectable.Add(allEnemies[i]);
             }
         }
+        
+        //See näitab, kas valitud vastane on nähtav
+        bool lockedTargetIsVisible = false;
 
+        if (lockedTarget != null)
+        {
+            //See näitab meile valitud vastase kordinaadid kaamera suhtes
+            Vector3 lockedViewPortPos = radar.WorldToViewportPoint(lockedTarget.transform.position);
+        
+            //Leiame, kas valitud vastane on ekraanil
+            lockedTargetIsVisible = lockedViewPortPos.z > 0 && lockedViewPortPos.x < 1 && lockedViewPortPos.x > 0 && lockedViewPortPos.y < 1 && lockedViewPortPos.y > 0;
+        }
         //Kui me pole ühte vastast valinud, mida jälgida või see  vastane on kaamera vaatest väljaspool, valime ühe juhuslikult
-        if (lockedTarget == null || radar.WorldToScreenPoint(lockedTarget.transform.position).z <= 0)
+        if (lockedTarget == null || !lockedTargetIsVisible)
         {
             //Me peame samuti sellele vastasele ütlema, et ta ei ole enam valitud
             if (lockedTarget != null)
             {
                 lockedTarget.GetComponent<Enemy>().indicator.GetComponent<Indicator>().isLocked = false;
             }
-            lockedTarget = allEnemiesDetectable[UnityEngine.Random.Range(0, allEnemiesDetectable.Count - 1)];
+
+            //Ainult kui on vastaseid, mida me saame leida, valime uue vastase
+            if (allEnemiesDetectable.Count != 0)
+            {
+                lockedTarget = allEnemiesDetectable[UnityEngine.Random.Range(0, allEnemiesDetectable.Count)];
+            }
+
+            //Muidu me tühistame selle muutuja
+            else
+            {
+                lockedTarget = null;
+            }
         }
 
         //Anname valitud vastase näitajale teada, et tema vastane on välja valitud
@@ -259,18 +286,13 @@ public class PlaneControls : MonoBehaviour
 
             //Siin me näitame, mitu kuuli on mängijal alles
             bulletCounter.text = "Bullets left: " + bullets;
-        }
 
-        if (Input.GetMouseButtonDown(3))
-        {
-            //GameObject Missile = Instantiate(missile);
-            //Missile.GetComponent<Missile>().target = lockedTarget;
-            print ("Ok");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            print ("BOOM!! Nice shot man");
+            if (Input.GetMouseButtonDown(1))
+            {
+                //GameObject Missile = Instantiate(missile);
+                //Missile.GetComponent<Missile>().target = lockedTarget;
+                print ("Ok");
+            }
         }
 
         //See kood jookseb siis, kui mäng ei ole pausile pandud
@@ -292,8 +314,6 @@ public class PlaneControls : MonoBehaviour
                 pause = true;
             }
         }
-
-        print(lockedTarget);
 
         // Kontrollime, kas mängija on surnud
         if (hp <= 0)
