@@ -29,49 +29,56 @@ public class Missile : MonoBehaviour
 
     void Update()
     {
-        //Oleme kindlad, et meie peamine kaamera on see, mis õigeid asju näitab
-        mainCamera.enabled = true;
-        cam.enabled = false;
+        //Oleme kindlad, et meie kaamera samuti töötab
+        cam.enabled = true;
         
         //Siin me võtame oma target objekti positiooni ja leiame selle positiooni ekraanil (canvase peal)
-        UnityEngine.Vector3 screenPosOfTarget = cam.WorldToScreenPoint(target.transform.position);
+        //UnityEngine.Vector3 screenPosOfTarget = cam.WorldToScreenPoint(target.transform.position);
 
-        //Siin me kontrollime kas vastane on nähtav
-        if (screenPosOfTarget.z > 0)
+        if(target != null)
         {
-            //See on meie otsitava objekti kiirus
-            UnityEngine.Vector3 targetSpeed = (target.transform.position - targetLastFramePos) / Time.deltaTime;
+            Vector3 toTarget = target.transform.position - transform.position;
+            float angle = Vector3.Angle(transform.forward, toTarget);
             
-            //See on aeg kuni me otsitava objektiga kokku põrkame
-            float timeToHit = UnityEngine.Vector3.Distance(transform.position, targetLastFramePos) / (missileSpeed * Time.deltaTime);
-            
-            //See on meie otsitava objekti positioon siis, kui me sellega kokku põrkame, ja see ei muuda kiirust ega suunda
-            UnityEngine.Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
-            
-            //Siin me arvutame, kuhu me peame pöörama
-            Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - (new Vector3(1, 1, 1) * targetJamming));
+            bool hasLock = angle < 90 * 0.5f;
+            if (hasLock)
+            {
+                //See on meie otsitava objekti kiirus
+                UnityEngine.Vector3 targetSpeed = (target.transform.position - targetLastFramePos) / Time.deltaTime;
+                
+                //See on aeg kuni me otsitava objektiga kokku põrkame
+                float timeToHit = UnityEngine.Vector3.Distance(transform.position, targetLastFramePos) / (missileSpeed * Time.deltaTime);
+                
+                //See on meie otsitava objekti positioon siis, kui me sellega kokku põrkame, ja see ei muuda kiirust ega suunda
+                UnityEngine.Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
+                
+                //Siin me arvutame, kuhu me peame pöörama
+                Quaternion targetRotation = Quaternion.LookRotation(targetFuturePos - transform.position - (new Vector3(1, 1, 1) * targetJamming));
 
-            //Siin meie rakett pööratakse ja liigutatakse edasi
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxTurn * Time.deltaTime);
+                //Siin meie rakett pööratakse ja liigutatakse edasi
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxTurn * Time.deltaTime);
 
-            //Alles lõpus me muudame targetLastFramePos, sest me kasutame seda jälle uues kaadris
-            targetLastFramePos = target.transform.position;
+                //Alles lõpus me muudame targetLastFramePos, sest me kasutame seda jälle uues kaadris
+                targetLastFramePos = target.transform.position;
+            }
+
+            //Muidu me plahvatame
+            //else
+            {
+                //Explode(false);
+            }
+
+            //Liigutame raketi edasi
+            transform.position += missileSpeed * transform.forward / Time.deltaTime;
+
+            //Siin me kontrollime, kas rakett on otsitava objekti läheduses, ja kui on, siis see plahvatab
+            if(Vector3.Distance(transform.position, target.transform.position) <= proximityFuze)
+            {
+                Explode(true);
+            }
         }
 
-        //Muidu me plahvatame
-        else
-        {
-            Explode(false);
-        }
-
-        //Liigutame raketi edasi
-        transform.position += missileSpeed * transform.forward * Time.deltaTime;
-
-        //Siin me kontrollime, kas rakett on otsitava objekti läheduses, ja kui on, siis see plahvatab
-        if(Vector3.Distance(transform.position, target.transform.position) <= proximityFuze)
-        {
-            Explode(true);
-        }
+        print(transform.forward);
     }
 
     //See on meie plahvatamismeeteod
@@ -79,7 +86,7 @@ public class Missile : MonoBehaviour
     {
         if(reachedTarget)
         {
-            Destroy(target);
+            target.GetComponent<Enemy>().SelfDestroy();
         }
         Destroy(gameObject);
     }
