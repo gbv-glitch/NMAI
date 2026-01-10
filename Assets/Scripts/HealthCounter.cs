@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HealthCounter : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
 
     //Pildid, mis näitavad, kui kiiresti me sõidame
     public Sprite tenPercent;
@@ -24,43 +24,43 @@ public class HealthCounter : MonoBehaviour
     void Update()
     {
         //Kontrollime, mitu protsenti maksimumist kiirusest mängija lendab ja vahetame pildi selle järgi
-        if (Player.GetComponent<PlaneControls>().hp == 1)
+        if (player.GetComponent<PlaneControls>().hp == 1)
         {
             objectImage.sprite = tenPercent;
         }
-        else if (Player.GetComponent<PlaneControls>().hp == 2)
+        else if (player.GetComponent<PlaneControls>().hp == 2)
         {
             objectImage.sprite = twentyPercent;
         }
-        else if (Player.GetComponent<PlaneControls>().hp == 3)
+        else if (player.GetComponent<PlaneControls>().hp == 3)
         {
             objectImage.sprite = thirtyPercent;
         }
-        else if (Player.GetComponent<PlaneControls>().hp == 4)
+        else if (player.GetComponent<PlaneControls>().hp == 4)
         {
             objectImage.sprite = fourtyPercent;
         }
-        else if (Player.GetComponent<PlaneControls>().hp == 5)
+        else if (player.GetComponent<PlaneControls>().hp == 5)
         {
             objectImage.sprite = fiftyPercent;
         }
-        else if(Player.GetComponent<PlaneControls>().hp == 6)
+        else if(player.GetComponent<PlaneControls>().hp == 6)
         {
             objectImage.sprite = sixtyPercent;
         }
-        else if(Player.GetComponent<PlaneControls>().hp == 7)
+        else if(player.GetComponent<PlaneControls>().hp == 7)
         {
             objectImage.sprite = seventyPercent;
         }
-        else if(Player.GetComponent<PlaneControls>().hp == 8)
+        else if(player.GetComponent<PlaneControls>().hp == 8)
         {
             objectImage.sprite = eightyPercent;
         }
-        else if(Player.GetComponent<PlaneControls>().hp == 9)
+        else if(player.GetComponent<PlaneControls>().hp == 9)
         {
             objectImage.sprite = ninetyPercent;
         }
-        else if(Player.GetComponent<PlaneControls>().hp == 10)
+        else if(player.GetComponent<PlaneControls>().hp == 10)
         {
             objectImage.sprite = hundredPercent;
         }

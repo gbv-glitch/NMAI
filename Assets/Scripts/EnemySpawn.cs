@@ -42,6 +42,8 @@ public class EnemySpawn : MonoBehaviour
         //Siin me valime, mitu vastast peab ilmuma
         enemiesLeftToSpawn = UnityEngine.Random.Range(5, 20);
 
+        player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
+
         //Me teatame mängijale mitu vastast on alguses
         player.GetComponent<PlaneControls>().enemiesLeft = enemiesLeftToSpawn;
 
