@@ -1563,7 +1563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &364407420
 Transform:
   m_ObjectHideFlags: 0
@@ -1605,16 +1605,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447e3e62964a3f97cba3cd5fa8286af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaneControls
-  missiles: 4
-  mainCamera: {fileID: 330585545}
-  radar: {fileID: 246109568}
+  missiles: 0
+  mainCamera: {fileID: 0}
+  radar: {fileID: 0}
   lockedTarget: {fileID: 0}
   enemyCounter: {fileID: 938053739}
   enemies: []
   enemiesLeft: 10
   allEnemies: []
   bullets: 600
-  weaponsCounter: {fileID: 839961929}
+  weaponsCounter: {fileID: 0}
   gunOverheatCounter: {fileID: 362696606}
   mainCameraGuidePosition: {fileID: 1410318616}
   bulletsInOneBurst: 0
@@ -1633,7 +1633,7 @@ MonoBehaviour:
   engineSound: {fileID: 512101673}
   readyToShoot: 1
   overheated: 0
-  missile: {fileID: 6560533391860368882, guid: 1c70e15cf819d337ebfab62c8e2490d7, type: 3}
+  missile: {fileID: 0}
 --- !u!1 &395738937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2922,7 +2922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &752494108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3983,6 +3983,7 @@ GameObject:
   - component: {fileID: 1138149103}
   - component: {fileID: 1138149105}
   - component: {fileID: 1138149104}
+  - component: {fileID: 1138149106}
   m_Layer: 5
   m_Name: Reticle
   m_TagString: Untagged
@@ -4047,6 +4048,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138149102}
   m_CullTransparentMesh: 1
+--- !u!114 &1138149106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138149102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae35a7a35ab6c18398102532fb84661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Reticle
+  reticle: {fileID: 1138149103}
+  player: {fileID: 752494107}
+  mainCam: {fileID: 330585545}
+  canvas: {fileID: 1486644536}
 --- !u!1 &1229776369
 GameObject:
   m_ObjectHideFlags: 0

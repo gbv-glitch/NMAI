@@ -38,9 +38,9 @@ public class Enemy : MonoBehaviour
             Vector3 targetSpeed = (target.transform.position - targetLastFramePosition) / Time.deltaTime;
 
             //Leiame aja, mis on meie kuulil vaja, et mängijale pihta saada
-            float timeToHit = Vector3.Distance(transform.position, targetLastFramePosition) / 300f;
+            float timeToHit = Vector3.Distance(transform.position, targetLastFramePosition) / 300f;//Kuuli kiirus
 
-            //Leiame, kus mängija on timeToHit skundi pärast
+            //Leiame, kus mängija on timeToHit sekundi pärast
             Vector3 targetFuturePos = target.transform.position + (targetSpeed * timeToHit);
 
             // Liigutame vastase edasi
