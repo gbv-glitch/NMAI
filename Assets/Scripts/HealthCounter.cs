@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthCounter : MonoBehaviour
 {
-    public GameObject player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
+    public GameObject player;
 
     //Pildid, mis näitavad, kui kiiresti me sõidame
     public Sprite tenPercent;
@@ -19,7 +20,12 @@ public class HealthCounter : MonoBehaviour
 
     //Meie pilt
     public Image objectImage;
-
+    //See kood jookseb ühe korra
+    void Start()
+    {
+        StartCoroutine(Wait1Frame());
+    }
+    
     //See kood jookseb iga kaader
     void Update()
     {
@@ -67,7 +73,13 @@ public class HealthCounter : MonoBehaviour
         else
         {
             return;
-        }
-        
+        }   
     }
+
+
+    IEnumerator Wait1Frame()
+    {
+        yield return null;
+        player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
+    }    
 }

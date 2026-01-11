@@ -3086,7 +3086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebb1d45548e73bf79e9fe99e4a34f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndication
-  Player: {fileID: 752494107}
+  player: {fileID: 0}
   tenPercent: {fileID: 21300000, guid: 92539aaa3953c5abbacdc9fec7c14679, type: 3}
   twentyPercent: {fileID: 21300000, guid: 199fc3edc4dbd5099b8d4006b2e43a4a, type: 3}
   thirtyPercent: {fileID: 21300000, guid: f5bda6d9362a0a0ee9d6526a76db9481, type: 3}
@@ -3523,7 +3523,7 @@ GameObject:
   - component: {fileID: 884457986}
   m_Layer: 0
   m_Name: Plane Manager Helper
-  m_TagString: Untagged
+  m_TagString: PlaneManagerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4137,7 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7fd1f49e68ddb78cb9083a16c155448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthCounter
-  Player: {fileID: 752494107}
+  player: {fileID: 0}
   tenPercent: {fileID: 21300000, guid: 92539aaa3953c5abbacdc9fec7c14679, type: 3}
   twentyPercent: {fileID: 21300000, guid: 199fc3edc4dbd5099b8d4006b2e43a4a, type: 3}
   thirtyPercent: {fileID: 21300000, guid: f5bda6d9362a0a0ee9d6526a76db9481, type: 3}

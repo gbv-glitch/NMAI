@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,5 +36,4 @@ public class ActivePlayerFinder : MonoBehaviour
 
         return activeAircraft;
     }
-    
 }

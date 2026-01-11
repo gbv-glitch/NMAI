@@ -26,6 +26,7 @@ TagManager:
   - Enemy18
   - Enemy19
   - PlaneManager
+  - PlaneManagerHelper
   layers:
   - Default
   - TransparentFX

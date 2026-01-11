@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpeedIndication : MonoBehaviour
 {
-    public GameObject player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
+    public GameObject player;
 
     //Pildid, mis näitavad, kui kiiresti me sõidame
     public Sprite tenPercent;
@@ -19,6 +20,12 @@ public class SpeedIndication : MonoBehaviour
 
     //Meie pilt
     public Image objectImage;
+
+    //See kood jookseb üks kaader
+    void Start()
+    {
+        StartCoroutine(Wait1Frame());
+    }
 
     //See kood jookseb iga kaader
     void Update()
@@ -65,5 +72,13 @@ public class SpeedIndication : MonoBehaviour
             objectImage.sprite = hundredPercent;
         }
         
+    }
+
+
+    IEnumerator Wait1Frame()
+    {
+        yield return null;
+        player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
+
     }
 }
