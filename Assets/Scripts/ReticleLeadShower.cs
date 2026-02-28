@@ -1,5 +1,5 @@
 using UnityEngine;
-using System;
+using System.Collections;
 using UnityEngine.UI;
 
 class ReticleLeadShower : MonoBehaviour
@@ -33,6 +33,13 @@ class ReticleLeadShower : MonoBehaviour
 
     //See on tühi pilt
     public Sprite blank;
+
+    //Paneme oma mängija paika
+    
+    void Start()
+    {
+        StartCoroutine(Wait1Frame());
+    }
 
     //See kood jookseb iga kaader
     void Update()
@@ -68,17 +75,12 @@ class ReticleLeadShower : MonoBehaviour
         else
         {
             reticleLeadShower.GetComponent<Image>().sprite = blank;
-        }
-
-        //Kui meie mängija sihib õiges suunas, teatame sellest talle
-        //if(reticleLeadShower.anchoredPosition.x < 125 && reticleLeadShower.anchoredPosition.y < 125 && reticleLeadShower.anchoredPosition.x > -125 && reticleLeadShower.anchoredPosition.y > -125)
-        //{
-            //reticleLeadShower.GetComponent<Image>().sprite = shoot;
-        //}
-
-        //else
-        //{
-            //reticleLeadShower.GetComponent<Image>().sprite = dontShoot;
-        //}
+        }   
     }
+
+    IEnumerator Wait1Frame()
+    {
+        yield return null;
+        player = ActivePlayerFinder.FindActiveAircraft(GameObject.FindGameObjectWithTag("PlaneManager"), GameObject.FindGameObjectWithTag("PlaneManagerHelper"));
+    } 
 }

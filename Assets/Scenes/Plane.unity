@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447e3e62964a3f97cba3cd5fa8286af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaneControls
-  missiles: 4
+  missiles: 10
   mainCamera: {fileID: 330585545}
   radar: {fileID: 1070513539}
   lockedTarget: {fileID: 0}
@@ -1620,11 +1620,11 @@ MonoBehaviour:
   mainCameraGuidePosition: {fileID: 1410318616}
   bulletsInOneBurst: 0
   hp: 10
-  leftCanard: {fileID: 1635170101}
-  rightCanard: {fileID: 1635170101}
+  leftCanard: {fileID: 299040476}
+  rightCanard: {fileID: 299040476}
   rightElevon: {fileID: 1635170101}
-  leftElevon: {fileID: 1635170101}
-  playerPosition: {fileID: 1635170101}
+  leftElevon: {fileID: 299040476}
+  playerPosition: {fileID: 364407420}
   planeSpeedPercent: 20
   planeMaxSpeed: 75
   allEnemiesDetectable: []

@@ -47,4 +47,9 @@ public class PlaneManagerHelper : MonoBehaviour
             list[i].SetActive(true);
         }
     }
+
+    void Update()
+    {
+        Debug.Log(ActivePlayerFinder.FindActiveAircraft(planeManager, gameObject));
+    }
 }

@@ -28,7 +28,7 @@ public class ActivePlayerFinder : MonoBehaviour
 
         for (int i = 0; i < list.Count; i++)
         {
-            if (list[i].activeInHierarchy)
+            if (list[i].activeInHierarchy == true)
             {
                 activeAircraft = list[i];
             }

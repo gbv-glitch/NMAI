@@ -67,7 +67,6 @@ public class Indicator : MonoBehaviour
         else
         {
             indicatorUI.GetComponent<Image>().sprite = blank;
-        }
-        
+        }   
     }
 }
