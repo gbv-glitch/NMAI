@@ -17,6 +17,7 @@ public class PlaneControls : MonoBehaviour
 {
     //Nii mitu raketti meil on
     public float missiles;
+    public float maxMissiles;
 
     //See on meie peamine kaamera
     public Camera mainCamera;
@@ -40,6 +41,7 @@ public class PlaneControls : MonoBehaviour
 
     //Kuulide arv
     public float bullets = 600;
+    public float maxBullets = 600;
 
     //Kuulide arvu näitaja ekraanil
     public TextMeshProUGUI weaponsCounter;
@@ -105,6 +107,8 @@ public class PlaneControls : MonoBehaviour
     //Selle koodi me jookseme ühe korra mängu alguses
     void Start()
     {
+        maxMissiles = missiles;
+
         //Oleme kindlad, et õige kaamera on aktiivne
         radar.enabled = false;
         mainCamera.enabled = true;
@@ -293,6 +297,16 @@ public class PlaneControls : MonoBehaviour
             missiles -= 1f;
         }
 
+        if (bullets == 0)
+        {
+            Invoke("ReloadBullets", 15f);
+        }
+
+        if (missiles == 0)
+        {
+            Invoke("ReloadMissiles", 15f);
+        }
+
         // Kontrollime, kas mängija on surnud
         if (hp <= 0)
         {
@@ -332,5 +346,14 @@ public class PlaneControls : MonoBehaviour
 
         //Siin me näitame, mitu kuuli on kuni meie kahur saab liiga kuumaks
         gunOverheatCounter.text = "Bullets until overheating:" + MathF.Abs(50 - bulletsInOneBurst);
+    }
+
+    public void ReloadBullets()
+    {
+        bullets = maxBullets;
+    }
+    public void ReloadMissiles()
+    {
+        missiles = maxMissiles;
     }
 }

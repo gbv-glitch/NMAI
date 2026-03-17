@@ -11,15 +11,8 @@ public class ActivePlayerFinder : MonoBehaviour
 
         PlaneManagerHelper planeManagerHelperComponent = planeManagerHelper.GetComponent<PlaneManagerHelper>();
 
-        if(planeManagerComponent.selection != "Choose Your Aircraft")
-        {
-            return IsActiveAircraft(planeManagerHelperComponent.aircraft);
-        }
 
-        else
-        {
-            return null;
-        }
+        return IsActiveAircraft(planeManagerHelperComponent.aircraft);
     }
 
     private static GameObject IsActiveAircraft(List<GameObject> list)

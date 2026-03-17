@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
 
                 //Vastane saab alles tulistada 1 sekund hiljem
                 readyToShoot = false;
-                Invoke("ReadyToShoot", 1f);
+                Invoke("ReadyToShoot", 0.25f);
             }
 
             //Alles lõpus me muudame mängija positiooni, sest kui me seda jälle kasutame, on juba järgmine kaader
